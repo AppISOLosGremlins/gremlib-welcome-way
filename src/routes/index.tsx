@@ -27,6 +27,7 @@ const slides = [
 function Index() {
   const [step, setStep] = useState(0);
   const slide = slides[step];
+  if (!slide) return null;
   const TagIcon = slide.icon;
   return (
     <main className="welcome-page">
