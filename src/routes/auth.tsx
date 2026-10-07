@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 import { authErrorMessage } from "@/lib/auth-errors";
 
 export const Route = createFileRoute("/auth")({
-  validateSearch: (search: Record<string, unknown>): { mode: "login" | "signup" | "forgot" } => ({ mode: search.mode === "signup" || search.mode === "forgot" ? search.mode : "login" }),
+  validateSearch: (search: Record<string, unknown>): { mode: "login" | "signup" | "forgot" } => ({ mode: search['mode'] === "signup" || search['mode'] === "forgot" ? search['mode'] : "login" }),
   head: () => ({ meta: [ { title: "Tu cuenta — GremLib" }, { name: "description", content: "Inicia sesión o crea tu cuenta de GremLib y personaliza tu perfil lector." }, { property: "og:title", content: "Tu cuenta — GremLib" }, { property: "og:description", content: "Tu rincón de lectura comienza con una cuenta GremLib." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" } ] }),
   component: AuthPage,
 });
