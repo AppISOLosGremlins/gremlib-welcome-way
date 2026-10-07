@@ -250,3 +250,42 @@
 .genre-option { display: flex; align-items: center; gap: 8px; font-size: 12px; }
 .genre-option input { accent-color: var(--primary); width: 15px; height: 15px; }
 @media (max-width: 600px) { .auth-content { padding-top: 0; } .auth-mascot { width: 95px; height: 95px; } .auth-body h1 { font-size: 28px; } }
+
+:root { --review-surface: oklch(0.96 0.023 64); --review-ink: oklch(0.49 0.079 48); --admin-surface: oklch(0.946 0.022 238); --admin-ink: oklch(0.47 0.07 238); }
+.member-page { min-height: 100svh; padding-bottom: 100px; }
+.member-header { max-width: 860px; padding: 28px 28px; }
+.member-content { width: 100%; max-width: 780px; margin: 0 auto; padding: 25px 28px 40px; }
+.member-greeting { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 42px; }
+.member-greeting > div { min-width: 0; }
+.member-title { font-family: var(--font-display); font-size: 40px; font-weight: 600; line-height: 1.2; margin: 0; overflow-wrap: anywhere; }
+.member-title span { color: var(--warm-accent); }
+.member-greeting p:not(.welcome-eyebrow) { color: var(--muted-foreground); font-size: 14px; margin-top: 12px; }
+.member-greeting img { width: 160px; height: 160px; object-fit: contain; mix-blend-mode: multiply; }
+.member-section-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 18px; }
+.member-section-heading h2 { font-family: var(--font-display); font-size: 20px; font-weight: 500; }
+.member-section-heading > span { display: flex; gap: 6px; align-items: center; color: var(--muted-foreground); font-size: 11px; }
+.member-section-heading svg { width: 13px; height: 13px; }
+.home-options { display: grid; gap: 16px; }
+.home-options .home-option { display: flex; align-items: center; white-space: normal; text-align: left; border: 1px solid var(--border); border-radius: 8px; width: 100%; height: auto; min-height: 145px; padding: 25px 28px; justify-content: flex-start; gap: 22px; color: var(--primary); background: var(--scene); transition: transform 180ms ease, box-shadow 180ms ease; }
+.home-options .home-option:hover { transform: translateY(-2px); box-shadow: var(--welcome-shadow); }
+.home-options .review-option { color: var(--review-ink); background: var(--review-surface); }
+.home-options .restock-option { color: var(--admin-ink); background: var(--admin-surface); }
+.option-icon { display: grid; place-items: center; width: 58px; height: 65px; flex-shrink: 0; }
+.home-option .option-icon svg { width: 42px; height: 42px; stroke-width: 1.3; }
+.option-copy { display: flex; flex-direction: column; min-width: 0; gap: 6px; }
+.option-copy strong { font-family: var(--font-display); font-size: 28px; font-weight: 600; }
+.option-copy > span:last-child { color: var(--muted-foreground); font-size: 12px; line-height: 1.6; }
+.option-kicker { font-size: 9px; font-weight: 600; }
+.home-option .option-arrow { margin-left: auto; width: 20px; height: 20px; }
+.member-signature { display: flex; justify-content: center; align-items: center; gap: 8px; color: var(--muted-foreground); font-size: 11px; margin-top: 32px; }
+.member-signature svg { width: 14px; height: 14px; }
+.member-tabs { position: fixed; z-index: 10; bottom: 0; left: 0; right: 0; width: 100%; max-width: 780px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); padding: 12px 16px max(14px, env(safe-area-inset-bottom)); border-top: 1px solid var(--border); background: var(--background); }
+.member-tabs .quiet-button { height: 54px; display: flex; flex-direction: column; gap: 5px; font-size: 10px; }
+.member-tabs .quiet-button svg { width: 20px; height: 20px; }
+.member-tabs .is-active { color: var(--primary); background: var(--scene); }
+.member-empty { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; min-height: 350px; padding: 35px 0; gap: 18px; color: var(--muted-foreground); }
+.member-empty > svg { width: 52px; height: 52px; color: var(--decoration); stroke-width: 1.2; }
+.member-empty h2, .member-empty h1 { font-family: var(--font-display); font-size: 20px; font-weight: 500; color: var(--foreground); line-height: 1.5; }
+.member-empty p { font-size: 13px; }
+.member-profile { max-width: 380px; margin: 0 auto; }
+@media (max-width: 600px) { .member-header { padding: 23px 22px; } .member-content { padding: 15px 22px 28px; } .member-greeting { margin-bottom: 20px; } .member-greeting img { width: 105px; height: 105px; } .member-title { font-size: 32px; } .member-greeting .welcome-eyebrow { font-size: 8px; letter-spacing: 1px; } .member-greeting p:not(.welcome-eyebrow) { font-size: 12px; } .member-section-heading h2 { font-size: 18px; } .home-options .home-option { min-height: 145px; padding: 22px 18px; gap: 13px; } .option-icon { width: 40px; } .home-option .option-icon svg { width: 34px; height: 34px; } .option-copy strong { font-size: 25px; } .option-copy > span:last-child { font-size: 11px; } }
