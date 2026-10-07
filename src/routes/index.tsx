@@ -36,7 +36,7 @@ function Index() {
       <header className="welcome-header">
         <Link to="/" className="brand-mark" aria-label="GremLib, inicio"><BookOpen /><span>GremLib<span className="brand-period">.</span></span></Link>
         <span className="header-note"><Leaf /> Un lugar para perderse leyendo</span>
-        <Button variant="quiet" asChild><Link to="/auth" search={{ mode: "login" }}>{loading ? "Tu cuenta" : user ? "Mi perfil" : "Iniciar sesión"}<ArrowRight /></Link></Button>
+        {user ? <Button variant="quiet" asChild><Link to="/inicio">Inicio<ArrowRight /></Link></Button> : <Button variant="quiet" asChild><Link to="/auth" search={{ mode: "login" }}>{loading ? "Tu cuenta" : "Iniciar sesión"}<ArrowRight /></Link></Button>}
       </header>
 
       <section className="welcome-content" aria-label="Introducción a GremLib">
@@ -60,8 +60,8 @@ function Index() {
           <div className="step-dots" aria-label="Pasos de la introducción">
             {slides.map((_, i) => <Button key={i} variant="quiet" className={`step-dot ${step === i ? "is-current" : ""}`} aria-label={`Ver paso ${i + 1}`} aria-current={step === i ? "step" : undefined} onClick={() => setStep(i)} />)}
           </div>
-          {step === 2 ? <Button variant="welcome" asChild><Link to="/auth" search={{ mode: user ? "login" : "signup" }}>{user ? "Ir a mi perfil" : "Crear mi cuenta"}<ArrowRight /></Link></Button> : <Button variant="welcome" onClick={() => setStep(step + 1)}>{step === 0 ? "Comenzar la aventura" : "Continuar"}<ArrowRight /></Button>}
-          <p className="welcome-account">{user ? <Link to="/auth" search={{ mode: "login" }}>Ir a mi perfil</Link> : <>¿Ya tienes cuenta? <Link to="/auth" search={{ mode: "login" }}>Inicia sesión</Link> · <Link to="/auth" search={{ mode: "signup" }}>Regístrate</Link></>}</p>
+          {step === 2 ? user ? <Button variant="welcome" asChild><Link to="/inicio">Ir a Inicio<ArrowRight /></Link></Button> : <Button variant="welcome" asChild><Link to="/auth" search={{ mode: "signup" }}>Crear mi cuenta<ArrowRight /></Link></Button> : <Button variant="welcome" onClick={() => setStep(step + 1)}>{step === 0 ? "Comenzar la aventura" : "Continuar"}<ArrowRight /></Button>}
+          <p className="welcome-account">{user ? <Link to="/inicio">Ir a Inicio</Link> : <>¿Ya tienes cuenta? <Link to="/auth" search={{ mode: "login" }}>Inicia sesión</Link> · <Link to="/auth" search={{ mode: "signup" }}>Regístrate</Link></>}</p>
           <p className="welcome-footnote"><Heart /> Para quienes aman el olor de un buen libro.</p>
         </div>
       </section>

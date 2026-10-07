@@ -1,11 +1,10 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, Navigate } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
 import { ArrowRight, Mail, ShieldCheck } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { lovable } from "@/integrations/lovable";
 import { useAuth } from "@/components/auth-provider";
 import { AuthLayout } from "@/components/auth-layout";
-import { AccountProfile } from "@/components/account-profile";
 import { PasswordField } from "@/components/password-field";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -19,7 +18,7 @@ export const Route = createFileRoute("/auth")({
 function AuthPage() {
   const { mode } = Route.useSearch();
   const { user, loading, recovery } = useAuth();
-  return <AuthLayout>{loading ? <p className="auth-description" role="status">Preparando tu refugio…</p> : user && !recovery ? <AccountProfile /> : <AuthForm key={mode} mode={mode} />}</AuthLayout>;
+  return <AuthLayout>{loading ? <p className="auth-description" role="status">Preparando tu refugio…</p> : user && !recovery ? <Navigate to="/inicio" replace /> : <AuthForm key={mode} mode={mode} />}</AuthLayout>;
 }
 function AuthForm({ mode }: { mode: "login" | "signup" | "forgot" }) {
   const [email, setEmail] = useState(""); const [name, setName] = useState(""); const [password, setPassword] = useState(""); const [confirm, setConfirm] = useState("");
