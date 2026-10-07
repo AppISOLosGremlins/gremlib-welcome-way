@@ -1,8 +1,9 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { ArrowRight, BookOpen, Bookmark, Heart, Sparkles, Leaf, RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import banner from "@/assets/gremlib-banner.asset.json";
+import { useAuth } from "@/components/auth-provider";
 
 export const Route = createFileRoute("/")({
   head: () => ({ meta: [
@@ -25,6 +26,7 @@ const slides = [
 ];
 
 function Index() {
+  const { user, loading } = useAuth();
   const [step, setStep] = useState(0);
   const slide = slides[step];
   if (!slide) return null;
@@ -32,9 +34,9 @@ function Index() {
   return (
     <main className="welcome-page">
       <header className="welcome-header">
-        <a href="/" className="brand-mark" aria-label="GremLib, inicio"><BookOpen /><span>GremLib<span className="brand-period">.</span></span></a>
+        <Link to="/" className="brand-mark" aria-label="GremLib, inicio"><BookOpen /><span>GremLib<span className="brand-period">.</span></span></Link>
         <span className="header-note"><Leaf /> Un lugar para perderse leyendo</span>
-        <Button variant="quiet" onClick={() => setStep(step === 2 ? 0 : 2)}>{step === 2 ? "Volver al inicio" : "Saltar introducción"}<ArrowRight /></Button>
+        <Button variant="quiet" asChild><Link to="/auth" search={{ mode: "login" }}>{loading ? "Tu cuenta" : user ? "Mi perfil" : "Iniciar sesión"}<ArrowRight /></Link></Button>
       </header>
 
       <section className="welcome-content" aria-label="Introducción a GremLib">
@@ -58,7 +60,8 @@ function Index() {
           <div className="step-dots" aria-label="Pasos de la introducción">
             {slides.map((_, i) => <Button key={i} variant="quiet" className={`step-dot ${step === i ? "is-current" : ""}`} aria-label={`Ver paso ${i + 1}`} aria-current={step === i ? "step" : undefined} onClick={() => setStep(i)} />)}
           </div>
-          <Button variant="welcome" onClick={() => setStep(step === 2 ? 0 : step + 1)}>{step === 0 ? "Comenzar la aventura" : step === 1 ? "Continuar" : "Volver a la bienvenida"}{step === 2 ? <RotateCcw /> : <ArrowRight />}</Button>
+          {step === 2 ? <Button variant="welcome" asChild><Link to="/auth" search={{ mode: user ? "login" : "signup" }}>{user ? "Ir a mi perfil" : "Crear mi cuenta"}<ArrowRight /></Link></Button> : <Button variant="welcome" onClick={() => setStep(step + 1)}>{step === 0 ? "Comenzar la aventura" : "Continuar"}<ArrowRight /></Button>}
+          <p className="welcome-account">{user ? <Link to="/auth" search={{ mode: "login" }}>Ir a mi perfil</Link> : <>¿Ya tienes cuenta? <Link to="/auth" search={{ mode: "login" }}>Inicia sesión</Link> · <Link to="/auth" search={{ mode: "signup" }}>Regístrate</Link></>}</p>
           <p className="welcome-footnote"><Heart /> Para quienes aman el olor de un buen libro.</p>
         </div>
       </section>
