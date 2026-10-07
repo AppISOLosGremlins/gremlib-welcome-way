@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { ArrowRight, BookOpen, Bookmark, Heart, Sparkles, Leaf, RotateCcw } from "lucide-react";
+import { ArrowRight, BookOpen, Bookmark, Heart, Sparkles, Leaf } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import banner from "@/assets/gremlib-banner.asset.json";
 import { useAuth } from "@/components/auth-provider";

@@ -1,4 +1,5 @@
 export function authErrorMessage(error: { message: string; code?: string }) {
+  if (/email address is not allowed|email.*invalid|invalid.*email/i.test(error.message)) return "Usa un correo electrónico válido que pueda recibir mensajes.";
   if (error.code === "invalid_credentials" || /invalid login credentials/i.test(error.message)) return "El correo o la contraseña no son correctos.";
   if (/email not confirmed/i.test(error.message)) return "Confirma tu correo antes de iniciar sesión. Revisa también la carpeta de spam.";
   if (/already registered|already been registered/i.test(error.message)) return "Ya existe una cuenta con ese correo. Inicia sesión o recupera tu contraseña.";
