@@ -8,3 +8,7 @@
 - [x] Add signed-in Inicio with Catálogo and Reseñar destinations, currently empty without inventory.
 - [x] Add administrator-only Reponer and secure role checks; no role grants are available to clients.
 - [x] Connect sign-in navigation and profile tab; verify signed-out access and routing. Signed-in visual checks and administrator assignment require an existing confirmed account.
+
+# Catalog search
+- [x] Add title, author and ISBN search with genre, price and format filters, removable filters and reset controls.
+- [x] Verify price validation, URL persistence, mobile layout and matching tests; inventory remains empty.
