@@ -16,3 +16,4 @@
 - Keep recovery at the public /reset-password route and require a recovery link before password updates to avoid accidental signed-in password changes.
 - Store roles separately from profiles and verify administrative access through authenticated server functions using owner-readable roles; clients cannot grant roles.
 - Keep catalog, reviews and restock destinations in empty states until inventory and review workflows are explicitly requested; do not fabricate books or successful stock operations.
+- Keep catalog search and applied filters in validated route search parameters; use the shared catalog matcher for title, author, ISBN and attribute filtering without seeding inventory.
