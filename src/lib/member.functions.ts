@@ -23,6 +23,20 @@ export const getCatalogBooks = createServerFn({ method: "GET" })
     return data.map(book => ({ ...book, price: Number(book.price) }));
   });
 
+export const getBookDetail = createServerFn({ method: "GET" })
+  .inputValidator((bookId: string) => bookId)
+  .middleware([requireSupabaseAuth])
+  .handler(async ({ context, data: bookId }) => {
+    const { data, error } = await context.supabase
+      .from("books")
+      .select("id, title, author, isbn, genre, price, format, stock, description")
+      .eq("id", bookId)
+      .maybeSingle();
+    if (error) throw new Error("No se ha podido cargar el libro.");
+    if (!data) return null;
+    return { ...data, price: Number(data.price) };
+  });
+
 export const verifyRestockAccess = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
