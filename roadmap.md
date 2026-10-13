@@ -11,4 +11,5 @@
 
 # Catalog search
 - [x] Add title, author and ISBN search with genre, price and format filters, removable filters and reset controls.
-- [x] Verify price validation, URL persistence, mobile layout and matching tests; inventory remains empty.
+- [x] Verify price validation, URL persistence, mobile layout and matching tests.
+- [x] Create the books table with a 12-title starter catalog and render searchable book cards (genre, price, format, stock); verified search and combined filters with a signed-in session.
