@@ -313,7 +313,10 @@
 .catalog-results-heading { display: flex; align-items: center; justify-content: space-between; min-height: 40px; gap: 8px; padding-bottom: 12px; border-bottom: 1px solid var(--border); font-size: 12px; color: var(--muted-foreground); }
 .catalog-empty { min-height: 300px; }
 .catalog-results { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; margin-top: 16px; }
-.catalog-book { display: flex; justify-content: space-between; align-items: flex-start; gap: 14px; padding: 16px; border: 1px solid var(--border); border-radius: 16px; background: var(--card); }
+.catalog-book { border: 1px solid var(--border); border-radius: 16px; background: var(--card); transition: border-color 0.2s ease, box-shadow 0.2s ease; }
+.catalog-book:hover { border-color: var(--primary); box-shadow: 0 6px 18px color-mix(in oklch, var(--primary) 14%, transparent); }
+.catalog-book-link { display: flex; justify-content: space-between; align-items: flex-start; gap: 14px; padding: 16px; color: inherit; text-decoration: none; border-radius: inherit; }
+.catalog-book-link:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
 .catalog-book-info { min-width: 0; display: flex; flex-direction: column; gap: 5px; }
 .catalog-book-genre { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary); }
 .catalog-book h3 { margin: 0; font-size: 16px; line-height: 1.25; }
