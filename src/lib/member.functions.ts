@@ -12,6 +12,17 @@ export const getMemberHome = createServerFn({ method: "GET" })
     return { displayName: profile.data.display_name, isAdmin: role.data === true };
   });
 
+export const getCatalogBooks = createServerFn({ method: "GET" })
+  .middleware([requireSupabaseAuth])
+  .handler(async ({ context }) => {
+    const { data, error } = await context.supabase
+      .from("books")
+      .select("id, title, author, isbn, genre, price, format, stock, description")
+      .order("title", { ascending: true });
+    if (error) throw new Error("No se ha podido cargar el catálogo.");
+    return data.map(book => ({ ...book, price: Number(book.price) }));
+  });
+
 export const verifyRestockAccess = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {

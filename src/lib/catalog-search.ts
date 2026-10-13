@@ -1,6 +1,6 @@
 export const catalogGenres = ["Fantasía", "Ciencia ficción", "Misterio", "Romance", "Historia", "Infantil", "Poesía", "Ensayo"];
 export type CatalogFilters = { q: string; genre: string; min: string; max: string; format: string };
-export type CatalogBook = { id: string; title: string; author: string; isbn: string; genre: string; price: number; format: string };
+export type CatalogBook = { id: string; title: string; author: string; isbn: string; genre: string; price: number; format: string; stock?: number; description?: string };
 export const emptyCatalogFilters: CatalogFilters = { q: "", genre: "", min: "", max: "", format: "" };
 export function validateCatalogSearch(search: Record<string, unknown>): CatalogFilters {
   const text = (key: string) => typeof search[key] === "string" ? search[key] as string : "";
