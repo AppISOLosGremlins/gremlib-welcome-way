@@ -326,3 +326,41 @@
 .catalog-book-meta span { font-size: 11px; padding: 3px 8px; border-radius: 999px; background: var(--label-background); color: var(--muted-foreground); }
 .catalog-book-price { flex-shrink: 0; font-weight: 700; font-size: 15px; color: var(--primary); }
 @media (max-width: 600px) { .member-header { padding: 23px 22px; } .member-content { padding: 15px 22px 28px; } .member-greeting { margin-bottom: 20px; } .member-greeting img { width: 105px; height: 105px; } .member-title { font-size: 32px; } .member-greeting .welcome-eyebrow { font-size: 8px; letter-spacing: 1px; } .member-greeting p:not(.welcome-eyebrow) { font-size: 12px; } .member-section-heading h2 { font-size: 18px; } .home-options .home-option { min-height: 145px; padding: 22px 18px; gap: 13px; } .option-icon { width: 40px; } .home-option .option-icon svg { width: 34px; height: 34px; } .option-copy strong { font-size: 25px; } .option-copy > span:last-child { font-size: 11px; } }
+
+/* Book detail page */
+.book-back { margin-bottom: 14px; }
+.book-detail { display: grid; grid-template-columns: minmax(160px, 220px) 1fr; gap: 26px; align-items: start; }
+.book-detail-info { min-width: 0; }
+.book-detail-info .welcome-eyebrow { margin-top: 0; }
+.book-detail-author { font-size: 16px; color: var(--muted-foreground); margin: 6px 0 0; }
+.book-detail-description { font-size: 14px; line-height: 1.65; color: var(--foreground); margin: 16px 0 0; }
+.book-detail-attrs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 20px 0 0; }
+.book-detail-attrs > div { border: 1px solid var(--border); border-radius: 12px; padding: 10px 12px; background: var(--card); }
+.book-detail-attrs dt { display: flex; align-items: center; gap: 6px; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted-foreground); }
+.book-detail-attrs dt svg { width: 13px; height: 13px; color: var(--primary); }
+.book-detail-attrs dd { margin: 4px 0 0; font-size: 14px; font-weight: 600; overflow-wrap: anywhere; }
+.book-detail-price { margin: 20px 0 0; font-family: var(--font-display); font-size: 30px; font-weight: 700; color: var(--primary); }
+
+/* Illustrated cover */
+.book-cover { position: relative; display: flex; flex-direction: column; justify-content: flex-end; gap: 4px; aspect-ratio: 2 / 3; width: 100%; padding: 16px 14px; border-radius: 6px 14px 14px 6px; overflow: hidden; color: #fff; box-shadow: inset 6px 0 0 color-mix(in oklch, #000 22%, transparent), 0 12px 28px color-mix(in oklch, #000 24%, transparent); }
+.book-cover-small { max-width: 120px; }
+.book-cover-genre { font-size: 8px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.85; }
+.book-cover-title { font-family: var(--font-display); font-size: 17px; line-height: 1.2; font-weight: 700; }
+.book-cover-author { font-size: 10px; opacity: 0.85; }
+.book-cover-mark { position: absolute; top: 14px; right: 14px; width: 26px; height: 26px; opacity: 0.35; }
+.book-cover-fantasia { background: linear-gradient(160deg, oklch(0.42 0.13 165), oklch(0.28 0.09 200)); }
+.book-cover-ciencia { background: linear-gradient(160deg, oklch(0.45 0.14 250), oklch(0.26 0.1 290)); }
+.book-cover-misterio { background: linear-gradient(160deg, oklch(0.36 0.06 260), oklch(0.22 0.04 280)); }
+.book-cover-romance { background: linear-gradient(160deg, oklch(0.55 0.16 15), oklch(0.36 0.12 350)); }
+.book-cover-historia { background: linear-gradient(160deg, oklch(0.5 0.11 70), oklch(0.32 0.08 50)); }
+.book-cover-infantil { background: linear-gradient(160deg, oklch(0.62 0.16 120), oklch(0.42 0.12 160)); }
+.book-cover-poesia { background: linear-gradient(160deg, oklch(0.55 0.1 320), oklch(0.35 0.08 300)); }
+.book-cover-ensayo { background: linear-gradient(160deg, oklch(0.48 0.08 210), oklch(0.3 0.06 230)); }
+.book-cover-default { background: linear-gradient(160deg, var(--primary), oklch(0.3 0.08 200)); }
+
+@media (max-width: 600px) {
+  .book-detail { grid-template-columns: 1fr; gap: 18px; }
+  .book-cover { max-width: 190px; margin: 0 auto; }
+  .book-detail-attrs { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .book-detail-price { font-size: 26px; }
+}
