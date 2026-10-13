@@ -6,9 +6,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetTr
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
 import { catalogGenres, emptyCatalogFilters, filterCatalog, type CatalogBook, type CatalogFilters } from "@/lib/catalog-search";
 
-// Inventory remains empty until the inventory workflow is implemented.
-const books: CatalogBook[] = [];
-export function CatalogSearch({ filters, onChange }: { filters: CatalogFilters; onChange: (filters: CatalogFilters) => void }) {
+export function CatalogSearch({ books, filters, onChange }: { books: CatalogBook[]; filters: CatalogFilters; onChange: (filters: CatalogFilters) => void }) {
   const [query, setQuery] = useState(filters.q);
   const [open, setOpen] = useState(false);
   const [draft, setDraft] = useState(filters);
@@ -49,7 +47,27 @@ export function CatalogSearch({ filters, onChange }: { filters: CatalogFilters; 
       </Sheet>
     </div>
     {chips.length > 0 && <div className="catalog-active-filters">{chips.map(chip => <Button key={chip.key} variant="outline" size="sm" onClick={() => onChange({ ...filters, [chip.key]: "" })} aria-label={`Quitar filtro: ${chip.label}`}>{chip.label}<X /></Button>)}</div>}
-    <div className="catalog-results-heading"><span>{results.length} libros</span>{(filters.q || activeCount > 0) && <Button variant="quiet" size="sm" onClick={() => { setQuery(""); onChange(emptyCatalogFilters); }}><RotateCcw />Limpiar búsqueda</Button>}</div>
-    <div className="member-empty catalog-empty" role="status"><BookOpen /><h2>{books.length === 0 ? "Todavía no hay libros en el catálogo." : "No se encontraron libros."}</h2>{books.length > 0 && <p>Prueba con otra búsqueda o cambia los filtros.</p>}</div>
+    <div className="catalog-results-heading"><span>{results.length} {results.length === 1 ? "libro" : "libros"}</span>{(filters.q || activeCount > 0) && <Button variant="quiet" size="sm" onClick={() => { setQuery(""); onChange(emptyCatalogFilters); }}><RotateCcw />Limpiar búsqueda</Button>}</div>
+    {results.length > 0 ? (
+      <ul className="catalog-results">
+        {results.map(book => (
+          <li key={book.id} className="catalog-book">
+            <div className="catalog-book-info">
+              <span className="catalog-book-genre">{book.genre}</span>
+              <h3>{book.title}</h3>
+              <p className="catalog-book-author">{book.author}</p>
+              {book.description && <p className="catalog-book-description">{book.description}</p>}
+              <div className="catalog-book-meta">
+                <span>{book.format}</span>
+                {typeof book.stock === "number" && <span>{book.stock > 0 ? `${book.stock} en stock` : "Agotado"}</span>}
+              </div>
+            </div>
+            <span className="catalog-book-price">{book.price.toFixed(2)} €</span>
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <div className="member-empty catalog-empty" role="status"><BookOpen /><h2>{books.length === 0 ? "Todavía no hay libros en el catálogo." : "No se encontraron libros."}</h2>{books.length > 0 && <p>Prueba con otra búsqueda o cambia los filtros.</p>}</div>
+    )}
   </>;
 }
