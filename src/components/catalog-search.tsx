@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "@tanstack/react-router";
 import { BookOpen, Search, SlidersHorizontal, X, RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -52,17 +53,19 @@ export function CatalogSearch({ books, filters, onChange }: { books: CatalogBook
       <ul className="catalog-results">
         {results.map(book => (
           <li key={book.id} className="catalog-book">
-            <div className="catalog-book-info">
-              <span className="catalog-book-genre">{book.genre}</span>
-              <h3>{book.title}</h3>
-              <p className="catalog-book-author">{book.author}</p>
-              {book.description && <p className="catalog-book-description">{book.description}</p>}
-              <div className="catalog-book-meta">
-                <span>{book.format}</span>
-                {typeof book.stock === "number" && <span>{book.stock > 0 ? `${book.stock} en stock` : "Agotado"}</span>}
+            <Link to="/libro/$bookId" params={{ bookId: book.id }} className="catalog-book-link" aria-label={`Ver ficha de ${book.title}`}>
+              <div className="catalog-book-info">
+                <span className="catalog-book-genre">{book.genre}</span>
+                <h3>{book.title}</h3>
+                <p className="catalog-book-author">{book.author}</p>
+                {book.description && <p className="catalog-book-description">{book.description}</p>}
+                <div className="catalog-book-meta">
+                  <span>{book.format}</span>
+                  {typeof book.stock === "number" && <span>{book.stock > 0 ? `${book.stock} en stock` : "Agotado"}</span>}
+                </div>
               </div>
-            </div>
-            <span className="catalog-book-price">{book.price.toFixed(2)} €</span>
+              <span className="catalog-book-price">{book.price.toFixed(2)} €</span>
+            </Link>
           </li>
         ))}
       </ul>

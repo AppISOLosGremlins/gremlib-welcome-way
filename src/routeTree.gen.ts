@@ -18,6 +18,7 @@ import { Route as AuthenticatedInicioRouteImport } from './routes/_authenticated
 import { Route as AuthenticatedPerfilRouteImport } from './routes/_authenticated/perfil'
 import { Route as AuthenticatedReponerRouteImport } from './routes/_authenticated/reponer'
 import { Route as AuthenticatedResenarRouteImport } from './routes/_authenticated/resenar'
+import { Route as AuthenticatedLibroBookIdRouteImport } from './routes/_authenticated/libro.$bookId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -63,6 +64,12 @@ const AuthenticatedResenarRoute = AuthenticatedResenarRouteImport.update({
   path: '/resenar',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedLibroBookIdRoute =
+  AuthenticatedLibroBookIdRouteImport.update({
+    id: '/libro/$bookId',
+    path: '/libro/$bookId',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -73,6 +80,7 @@ export interface FileRoutesByFullPath {
   '/perfil': typeof AuthenticatedPerfilRoute
   '/reponer': typeof AuthenticatedReponerRoute
   '/resenar': typeof AuthenticatedResenarRoute
+  '/libro/$bookId': typeof AuthenticatedLibroBookIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -83,6 +91,7 @@ export interface FileRoutesByTo {
   '/perfil': typeof AuthenticatedPerfilRoute
   '/reponer': typeof AuthenticatedReponerRoute
   '/resenar': typeof AuthenticatedResenarRoute
+  '/libro/$bookId': typeof AuthenticatedLibroBookIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -95,6 +104,7 @@ export interface FileRoutesById {
   '/_authenticated/perfil': typeof AuthenticatedPerfilRoute
   '/_authenticated/reponer': typeof AuthenticatedReponerRoute
   '/_authenticated/resenar': typeof AuthenticatedResenarRoute
+  '/_authenticated/libro/$bookId': typeof AuthenticatedLibroBookIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -107,6 +117,7 @@ export interface FileRouteTypes {
     | '/perfil'
     | '/reponer'
     | '/resenar'
+    | '/libro/$bookId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -117,6 +128,7 @@ export interface FileRouteTypes {
     | '/perfil'
     | '/reponer'
     | '/resenar'
+    | '/libro/$bookId'
   id:
     | '__root__'
     | '/'
@@ -128,6 +140,7 @@ export interface FileRouteTypes {
     | '/_authenticated/perfil'
     | '/_authenticated/reponer'
     | '/_authenticated/resenar'
+    | '/_authenticated/libro/$bookId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -202,6 +215,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedResenarRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/libro/$bookId': {
+      id: '/_authenticated/libro/$bookId'
+      path: '/libro/$bookId'
+      fullPath: '/libro/$bookId'
+      preLoaderRoute: typeof AuthenticatedLibroBookIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
@@ -211,6 +231,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedPerfilRoute: typeof AuthenticatedPerfilRoute
   AuthenticatedReponerRoute: typeof AuthenticatedReponerRoute
   AuthenticatedResenarRoute: typeof AuthenticatedResenarRoute
+  AuthenticatedLibroBookIdRoute: typeof AuthenticatedLibroBookIdRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
@@ -219,6 +240,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedPerfilRoute: AuthenticatedPerfilRoute,
   AuthenticatedReponerRoute: AuthenticatedReponerRoute,
   AuthenticatedResenarRoute: AuthenticatedResenarRoute,
+  AuthenticatedLibroBookIdRoute: AuthenticatedLibroBookIdRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
