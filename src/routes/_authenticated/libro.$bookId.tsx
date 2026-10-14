@@ -2,6 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { queryOptions, useSuspenseQuery } from "@tanstack/react-query";
 import { ArrowLeft, Barcode, BookOpen, Layers, Package, Tag } from "lucide-react";
 import { BookCover } from "@/components/book-cover";
+import { BookReviews, bookReviewsOptions } from "@/components/book-reviews";
 import { Button } from "@/components/ui/button";
 import { getBookDetail } from "@/lib/member.functions";
 import { emptyCatalogFilters } from "@/lib/catalog-search";
@@ -18,7 +19,11 @@ const bookOptions = (bookId: string) => queryOptions({
 });
 
 export const Route = createFileRoute("/_authenticated/libro/$bookId")({
-  loader: ({ context, params }) => context.queryClient.ensureQueryData(bookOptions(params.bookId)),
+  loader: async ({ context, params }) => {
+    const book = await context.queryClient.ensureQueryData(bookOptions(params.bookId));
+    await context.queryClient.ensureQueryData(bookReviewsOptions(params.bookId));
+    return book;
+  },
   head: ({ loaderData }) => pageMeta(
     loaderData ? `${loaderData.title} — GremLib` : "Libro no disponible — GremLib",
     loaderData ? `${loaderData.title}, de ${loaderData.author}. Ficha completa del libro en GremLib.` : "Este libro no está disponible en el catálogo de GremLib.",
@@ -63,6 +68,7 @@ function BookPage() {
           <p className="book-detail-price">{book.price.toFixed(2)} €</p>
         </div>
       </article>
+      <BookReviews bookId={book.id} />
     </>
   );
 }

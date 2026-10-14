@@ -15,6 +15,7 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as AuthenticatedCatalogoRouteImport } from './routes/_authenticated/catalogo'
 import { Route as AuthenticatedInicioRouteImport } from './routes/_authenticated/inicio'
+import { Route as AuthenticatedMisResenasRouteImport } from './routes/_authenticated/mis-resenas'
 import { Route as AuthenticatedPerfilRouteImport } from './routes/_authenticated/perfil'
 import { Route as AuthenticatedReponerRouteImport } from './routes/_authenticated/reponer'
 import { Route as AuthenticatedResenarRouteImport } from './routes/_authenticated/resenar'
@@ -49,6 +50,11 @@ const AuthenticatedInicioRoute = AuthenticatedInicioRouteImport.update({
   path: '/inicio',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedMisResenasRoute = AuthenticatedMisResenasRouteImport.update({
+  id: '/mis-resenas',
+  path: '/mis-resenas',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedPerfilRoute = AuthenticatedPerfilRouteImport.update({
   id: '/perfil',
   path: '/perfil',
@@ -77,6 +83,7 @@ export interface FileRoutesByFullPath {
   '/reset-password': typeof ResetPasswordRoute
   '/catalogo': typeof AuthenticatedCatalogoRoute
   '/inicio': typeof AuthenticatedInicioRoute
+  '/mis-resenas': typeof AuthenticatedMisResenasRoute
   '/perfil': typeof AuthenticatedPerfilRoute
   '/reponer': typeof AuthenticatedReponerRoute
   '/resenar': typeof AuthenticatedResenarRoute
@@ -88,6 +95,7 @@ export interface FileRoutesByTo {
   '/reset-password': typeof ResetPasswordRoute
   '/catalogo': typeof AuthenticatedCatalogoRoute
   '/inicio': typeof AuthenticatedInicioRoute
+  '/mis-resenas': typeof AuthenticatedMisResenasRoute
   '/perfil': typeof AuthenticatedPerfilRoute
   '/reponer': typeof AuthenticatedReponerRoute
   '/resenar': typeof AuthenticatedResenarRoute
@@ -101,6 +109,7 @@ export interface FileRoutesById {
   '/reset-password': typeof ResetPasswordRoute
   '/_authenticated/catalogo': typeof AuthenticatedCatalogoRoute
   '/_authenticated/inicio': typeof AuthenticatedInicioRoute
+  '/_authenticated/mis-resenas': typeof AuthenticatedMisResenasRoute
   '/_authenticated/perfil': typeof AuthenticatedPerfilRoute
   '/_authenticated/reponer': typeof AuthenticatedReponerRoute
   '/_authenticated/resenar': typeof AuthenticatedResenarRoute
@@ -114,6 +123,7 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/catalogo'
     | '/inicio'
+    | '/mis-resenas'
     | '/perfil'
     | '/reponer'
     | '/resenar'
@@ -125,6 +135,7 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/catalogo'
     | '/inicio'
+    | '/mis-resenas'
     | '/perfil'
     | '/reponer'
     | '/resenar'
@@ -137,6 +148,7 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/_authenticated/catalogo'
     | '/_authenticated/inicio'
+    | '/_authenticated/mis-resenas'
     | '/_authenticated/perfil'
     | '/_authenticated/reponer'
     | '/_authenticated/resenar'
@@ -194,6 +206,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedInicioRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/mis-resenas': {
+      id: '/_authenticated/mis-resenas'
+      path: '/mis-resenas'
+      fullPath: '/mis-resenas'
+      preLoaderRoute: typeof AuthenticatedMisResenasRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/perfil': {
       id: '/_authenticated/perfil'
       path: '/perfil'
@@ -228,6 +247,7 @@ declare module '@tanstack/react-router' {
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedCatalogoRoute: typeof AuthenticatedCatalogoRoute
   AuthenticatedInicioRoute: typeof AuthenticatedInicioRoute
+  AuthenticatedMisResenasRoute: typeof AuthenticatedMisResenasRoute
   AuthenticatedPerfilRoute: typeof AuthenticatedPerfilRoute
   AuthenticatedReponerRoute: typeof AuthenticatedReponerRoute
   AuthenticatedResenarRoute: typeof AuthenticatedResenarRoute
@@ -237,6 +257,7 @@ interface AuthenticatedRouteRouteChildren {
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedCatalogoRoute: AuthenticatedCatalogoRoute,
   AuthenticatedInicioRoute: AuthenticatedInicioRoute,
+  AuthenticatedMisResenasRoute: AuthenticatedMisResenasRoute,
   AuthenticatedPerfilRoute: AuthenticatedPerfilRoute,
   AuthenticatedReponerRoute: AuthenticatedReponerRoute,
   AuthenticatedResenarRoute: AuthenticatedResenarRoute,
