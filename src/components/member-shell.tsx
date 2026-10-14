@@ -13,7 +13,6 @@ export function MemberShell({ children }: { children: ReactNode }) {
       <img className="member-peek" src={gremlibPeek.url} alt="" aria-hidden="true" />
       <Button variant="quiet" asChild><Link to="/inicio" activeProps={{ className: "is-active" }}><Home /><span>Inicio</span></Link></Button>
       <Button variant="quiet" asChild><Link to="/catalogo" search={emptyCatalogFilters} activeProps={{ className: "is-active" }}><BookOpen /><span>Catálogo</span></Link></Button>
-      <Button variant="quiet" asChild><Link to="/resenar" activeProps={{ className: "is-active" }}><MessageSquare /><span>Reseñar</span></Link></Button>
       <Button variant="quiet" asChild><Link to="/perfil" activeProps={{ className: "is-active" }}><UserRound /><span>Perfil</span></Link></Button>
     </nav>
   </main>;

@@ -22,7 +22,7 @@ function MemberHome() {
     <div className="member-section-heading"><h2>Tu próximo capítulo</h2><span><Leaf /> A tu ritmo</span></div>
     <div className="home-options">
       <Button variant="quiet" asChild><Link to="/catalogo" search={emptyCatalogFilters} className="home-option catalog-option"><span className="option-icon"><BookOpen /></span><span className="option-copy"><span className="option-kicker">EXPLORA</span><strong>Catálogo</strong><span>Encuentra tu próxima lectura.</span></span><ArrowUpRight className="option-arrow" /></Link></Button>
-      <Button variant="quiet" asChild><Link to="/resenar" className="home-option review-option"><span className="option-icon"><MessageSquare /></span><span className="option-copy"><span className="option-kicker">COMPARTE</span><strong>Reseñar</strong><span>Cada lectura merece una opinión.</span></span><ArrowUpRight className="option-arrow" /></Link></Button>
+      <Button variant="quiet" asChild><Link to="/mis-resenas" className="home-option review-option"><span className="option-icon"><MessageSquare /></span><span className="option-copy"><span className="option-kicker">COMPARTE</span><strong>Mis reseñas</strong><span>Cada lectura merece una opinión.</span></span><ArrowUpRight className="option-arrow" /></Link></Button>
       {data.isAdmin && <Button variant="quiet" asChild><Link to="/reponer" className="home-option restock-option"><span className="option-icon"><PackagePlus /></span><span className="option-copy"><span className="option-kicker">ADMINISTRACIÓN</span><strong>Reponer</strong><span>Cuida las existencias de la librería.</span></span><ArrowUpRight className="option-arrow" /></Link></Button>}
     </div>
     <p className="member-signature"><BookOpen /> Una aventura en cada página.</p>
