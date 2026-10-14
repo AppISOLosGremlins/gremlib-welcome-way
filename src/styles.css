@@ -371,8 +371,10 @@
 .review-card header { display: flex; justify-content: space-between; align-items: center; gap: .5rem; }
 .review-card p { margin: 0; line-height: 1.5; }
 .review-card time { font-size: .75rem; color: var(--muted-foreground); }
-.review-stars { display: inline-flex; gap: 2px; }
-.review-stars svg, .review-rating svg { width: 1rem; height: 1rem; color: var(--muted-foreground); }
+.review-stars { position: relative; display: inline-flex; }
+.review-stars-row { display: inline-flex; gap: 2px; width: max-content; }
+.review-stars-clip { position: absolute; left: 0; top: 0; height: 100%; overflow: hidden; }
+.review-stars svg, .review-rating svg { width: 1rem; height: 1rem; color: var(--muted-foreground); flex: 0 0 auto; }
 .review-stars svg.is-on, .review-rating svg.is-on { color: var(--primary); fill: currentColor; }
 .review-rating { display: flex; gap: .25rem; }
 .review-rating button { background: none; border: 0; padding: .25rem; cursor: pointer; }

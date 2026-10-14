@@ -7,8 +7,17 @@ import { createReview, getBookReviews } from "@/lib/reviews.functions";
 
 export const bookReviewsOptions = (bookId: string) => queryOptions({ queryKey: ["book-reviews", bookId], queryFn: () => getBookReviews({ data: bookId }), staleTime: 0 });
 
+export function formatRating(value: number) {
+  return value.toFixed(1).replace(".", ",");
+}
+
 export function Stars({ value }: { value: number }) {
-  return <span className="review-stars" aria-label={`${value} de 5 estrellas`}>{[1, 2, 3, 4, 5].map(n => <Star key={n} aria-hidden="true" className={n <= Math.round(value) ? "is-on" : ""} />)}</span>;
+  const pct = Math.max(0, Math.min(100, (value / 5) * 100));
+  const row = (on: boolean) => [1, 2, 3, 4, 5].map(n => <Star key={n} aria-hidden="true" className={on ? "is-on" : ""} />);
+  return <span className="review-stars" role="img" aria-label={`${formatRating(value)} de 5 estrellas`}>
+    <span className="review-stars-row" aria-hidden="true">{row(false)}</span>
+    <span className="review-stars-clip" aria-hidden="true" style={{ width: `${pct}%` }}><span className="review-stars-row">{row(true)}</span></span>
+  </span>;
 }
 
 type Review = { id: string; author_name: string; rating: number; body: string; created_at: string };
@@ -38,7 +47,7 @@ export function BookReviews({ bookId }: { bookId: string }) {
     mutation.mutate();
   }
   return <section className="book-reviews" aria-labelledby="reviews-title">
-    <div className="member-section-heading"><h2 id="reviews-title">Reseñas</h2>{data.count > 0 && <span><Stars value={data.average} /> {data.average.toFixed(1)} · {data.count}</span>}</div>
+    <div className="member-section-heading"><h2 id="reviews-title">Reseñas</h2>{data.count > 0 && <span><Stars value={data.average} /> {formatRating(data.average)} · {data.count}</span>}</div>
     {data.featured.length > 0 ? <div className="review-list">{data.featured.map(r => <ReviewCard key={r.id} review={r} />)}</div>
       : !data.mine && <p className="review-empty">Todavía nadie ha reseñado este libro. ¡Sé el primero!</p>}
     {data.mine ? <div className="review-mine"><p className="welcome-eyebrow">TU RESEÑA</p><ReviewCard review={data.mine} title="Tú" /></div> :
