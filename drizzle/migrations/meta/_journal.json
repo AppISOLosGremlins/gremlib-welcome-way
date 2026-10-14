@@ -8,6 +8,13 @@
       "when": 1791874933507,
       "tag": "0000_create_books_catalog",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1791971368440,
+      "tag": "0001_create_reviews",
+      "breakpoints": true
     }
   ]
 }
