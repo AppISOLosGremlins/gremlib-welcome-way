@@ -16,3 +16,6 @@
 # Reviews
 - [x] One review per user per book, featured reviews on book page, "Mis reseñas" in profile; Reseñar removed from bottom menu.
 - [x] Sign-up/sign-in with Lovable Cloud and saved profile data (already in place).
+
+# Bottom navigation layout
+- [x] Center the three tabs (Inicio, Catálogo, Perfil) evenly with no empty slot; verified on mobile and desktop with a signed-in session.
