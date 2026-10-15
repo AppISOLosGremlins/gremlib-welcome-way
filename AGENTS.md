@@ -17,3 +17,4 @@
 - Store roles separately from profiles and verify administrative access through authenticated server functions using owner-readable roles; clients cannot grant roles.
 - Keep catalog, reviews and restock destinations in empty states until inventory and review workflows are explicitly requested; do not fabricate books or successful stock operations.
 - Keep catalog search and applied filters in validated route search parameters; use the shared catalog matcher for title, author, ISBN and attribute filtering without seeding inventory.
+- Mount accessibility settings once at the root, persist them locally after hydration, and apply semantic palette and rem-based text changes document-wide so routes and portal controls share the same preferences; touch reading must never speak input values.

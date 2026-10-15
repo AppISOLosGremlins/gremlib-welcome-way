@@ -7,6 +7,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { authErrorMessage } from "@/lib/auth-errors";
+import { AccessibilitySettingsButton } from "@/components/accessibility-settings";
 
 const genres = ["Fantasía", "Misterio", "Romance", "Ciencia ficción", "Historia", "No ficción"];
 export function AccountProfile() {
@@ -34,6 +35,7 @@ export function AccountProfile() {
   }
   if (!user) return null;
   return <div className="auth-body">
+    <div className="accessibility-entry"><AccessibilitySettingsButton /></div>
     <p className="welcome-eyebrow">TU REFUGIO LITERARIO</p><h1>Ya estás en casa.</h1>
     <p className="auth-description">Tu cuenta de GremLib está lista.</p>
     <p className="account-email">{user.email}</p>
