@@ -13,8 +13,6 @@ export const Route = createFileRoute("/")({
     { property: "og:description", content: "Un pequeño refugio para grandes historias. Conoce tu nueva librería GremLib." },
     { property: "og:type", content: "website" },
     { name: "twitter:card", content: "summary_large_image" },
-    { property: "og:image", content: banner.url },
-    { name: "twitter:image", content: banner.url },
   ] }),
   component: Index,
 });
