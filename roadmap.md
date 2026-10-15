@@ -19,3 +19,7 @@
 
 # Bottom navigation layout
 - [x] Center the three tabs (Inicio, Catálogo, Perfil) evenly with no empty slot; verified on mobile and desktop with a signed-in session.
+
+# Accessibility
+- [ ] Add shared accessibility settings in Inicio and Perfil with color adaptations, touch reading, contrast and text size.
+- [ ] Verify saved settings, keyboard controls and enlarged mobile layouts with a signed-in session.
