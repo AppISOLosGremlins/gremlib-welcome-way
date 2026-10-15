@@ -6,6 +6,7 @@ import { pageMeta } from "@/lib/page-meta";
 import { Button } from "@/components/ui/button";
 import banner from "@/assets/gremlib-banner.asset.json";
 import { emptyCatalogFilters } from "@/lib/catalog-search";
+import { AccessibilitySettingsButton } from "@/components/accessibility-settings";
 
 const homeOptions = queryOptions({ queryKey: ["member-home"], queryFn: () => getMemberHome(), staleTime: 0 });
 export const Route = createFileRoute("/_authenticated/inicio")({
@@ -18,6 +19,7 @@ export const Route = createFileRoute("/_authenticated/inicio")({
 function MemberHome() {
   const { data } = useSuspenseQuery(homeOptions);
   return <>
+    <div className="accessibility-entry"><AccessibilitySettingsButton /></div>
     <section className="member-greeting"><div><p className="welcome-eyebrow">TU REFUGIO LITERARIO</p><h1 className="member-title">Hola{data.displayName ? `, ${data.displayName.split(" ")[0]}` : ""}<span>.</span></h1><p>¿Qué historia comienza hoy?</p></div><img src={banner.url} alt="El duende lector de GremLib" /></section>
     <div className="member-section-heading"><h2>Tu próximo capítulo</h2><span><Leaf /> A tu ritmo</span></div>
     <div className="home-options">

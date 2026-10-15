@@ -25,7 +25,7 @@ export const Route = createFileRoute("/_authenticated/libro/$bookId")({
     return book;
   },
   head: ({ loaderData }) => pageMeta(
-    loaderData ? `${loaderData.title} — GremLib` : "Libro no disponible — GremLib",
+    loaderData ? loaderData.title : "Libro no disponible",
     loaderData ? `${loaderData.title}, de ${loaderData.author}. Ficha completa del libro en GremLib.` : "Este libro no está disponible en el catálogo de GremLib.",
   ),
   notFoundComponent: () => (

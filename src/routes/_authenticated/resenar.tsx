@@ -1,2 +1,3 @@
 import { createFileRoute, redirect } from "@tanstack/react-router";
-export const Route = createFileRoute("/_authenticated/resenar")({ beforeLoad: () => { throw redirect({ to: "/mis-resenas", replace: true }); } });
+import { pageMeta } from "@/lib/page-meta";
+export const Route = createFileRoute("/_authenticated/resenar")({ head: () => pageMeta("Reseñar", "Consulta tus opiniones de libros en GremLib."), beforeLoad: () => { throw redirect({ to: "/mis-resenas", replace: true }); } });
