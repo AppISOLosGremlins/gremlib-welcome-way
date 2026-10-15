@@ -155,6 +155,7 @@
 
 .welcome-page { min-height: 100svh; display: flex; flex-direction: column; position: relative; overflow: hidden; }
 .welcome-header { display: flex; align-items: center; justify-content: space-between; gap: 24px; width: 100%; max-width: 1440px; margin: 0 auto; padding: 28px 52px; }
+.auth-header-actions { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
 .brand-mark { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 700; font-size: 1.6875rem; text-decoration: none; color: var(--foreground); }
 .brand-mark > svg { width: 27px; height: 27px; color: var(--primary); }
 .brand-period { color: var(--warm-accent); }
@@ -200,6 +201,9 @@
   .header-note { display: none; }
   .welcome-header .quiet-button { padding: 0; font-size: 0.6875rem; }
   .welcome-header .quiet-button svg { width: 13px; }
+  .auth-header-actions { gap: 6px; }
+  .welcome-header .accessibility-trigger { padding: 8px 10px; font-size: 0.6875rem; white-space: nowrap; }
+  .welcome-header .accessibility-trigger svg { width: 13px; height: 13px; }
   .welcome-content { padding: 16px 25px 27px; }
   .illustration-scene { width: 300px; margin-bottom: 25px; }
   .scene-book { right: -1%; }
