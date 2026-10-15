@@ -27,9 +27,9 @@ export function AccessibilityProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (!ready) return;
     const root = document.documentElement;
-    root.dataset.colorVision = settings.colorMode;
-    root.dataset.highContrast = String(settings.highContrast);
-    root.dataset.largeText = String(settings.largeText);
+    root.dataset["colorVision"] = settings.colorMode;
+    root.dataset["highContrast"] = String(settings.highContrast);
+    root.dataset["largeText"] = String(settings.largeText);
     try { localStorage.setItem(accessibilityStorageKey, JSON.stringify(settings)); } catch { /* Settings still apply for this visit. */ }
   }, [ready, settings]);
   useEffect(() => {

@@ -19,10 +19,10 @@ export function parseAccessibilitySettings(value: unknown): AccessibilitySetting
   if (!value || typeof value !== "object") return { ...defaultAccessibilitySettings };
   const data = value as Record<string, unknown>;
   return {
-    colorMode: colorModes.find(mode => mode.value === data.colorMode)?.value ?? "none",
-    highContrast: data.highContrast === true,
-    largeText: data.largeText === true,
-    readOnTouch: data.readOnTouch === true,
+    colorMode: colorModes.find(mode => mode.value === data["colorMode"])?.value ?? "none",
+    highContrast: data["highContrast"] === true,
+    largeText: data["largeText"] === true,
+    readOnTouch: data["readOnTouch"] === true,
   };
 }
 

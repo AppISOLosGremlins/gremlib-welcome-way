@@ -11,7 +11,11 @@ import { AccessibilitySettingsButton } from "@/components/accessibility-settings
 const homeOptions = queryOptions({ queryKey: ["member-home"], queryFn: () => getMemberHome(), staleTime: 0 });
 export const Route = createFileRoute("/_authenticated/inicio")({
   loader: ({ context }) => context.queryClient.ensureQueryData(homeOptions),
-  head: () => pageMeta("Inicio", "Tu espacio en GremLib: descubre el catálogo, reseña tus lecturas y accede a tu perfil."),
+  head: () => ({ meta: [
+    ...pageMeta("Inicio", "Tu espacio en GremLib: descubre el catálogo, reseña tus lecturas y accede a tu perfil.").meta,
+    { property: "og:image", content: banner.url },
+    { name: "twitter:image", content: banner.url },
+  ] }),
   errorComponent: ({ reset }) => <div className="member-empty"><h1>No se ha podido cargar Inicio.</h1><Button variant="quiet" onClick={reset}>Reintentar</Button></div>,
   notFoundComponent: () => <p>Este espacio no está disponible.</p>,
   component: MemberHome,
