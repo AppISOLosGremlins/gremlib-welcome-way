@@ -1,3 +1,4 @@
+import type React from "react";
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import { accessibilityStorageKey, defaultAccessibilitySettings, parseAccessibilitySettings, readableTouchText, type AccessibilitySettings } from "@/lib/accessibility";
 
@@ -9,7 +10,9 @@ type AccessibilityContextValue = {
   speechError: string;
   stopReading: () => void;
 };
-const AccessibilityContext = createContext<AccessibilityContextValue | null>(null);
+// Keep one context instance across hot reloads so the root provider and consumers always match.
+const contextStore = globalThis as typeof globalThis & { __gremlibAccessibilityContext?: React.Context<AccessibilityContextValue | null> };
+const AccessibilityContext = contextStore.__gremlibAccessibilityContext ??= createContext<AccessibilityContextValue | null>(null);
 export function AccessibilityProvider({ children }: { children: ReactNode }) {
   const [settings, setSettings] = useState({ ...defaultAccessibilitySettings });
   const [ready, setReady] = useState(false);
