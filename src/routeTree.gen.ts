@@ -14,6 +14,7 @@ import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as AuthenticatedCatalogoRouteImport } from './routes/_authenticated/catalogo'
+import { Route as AuthenticatedCestaRouteImport } from './routes/_authenticated/cesta'
 import { Route as AuthenticatedInicioRouteImport } from './routes/_authenticated/inicio'
 import { Route as AuthenticatedMisResenasRouteImport } from './routes/_authenticated/mis-resenas'
 import { Route as AuthenticatedPerfilRouteImport } from './routes/_authenticated/perfil'
@@ -43,6 +44,11 @@ const ResetPasswordRoute = ResetPasswordRouteImport.update({
 const AuthenticatedCatalogoRoute = AuthenticatedCatalogoRouteImport.update({
   id: '/catalogo',
   path: '/catalogo',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedCestaRoute = AuthenticatedCestaRouteImport.update({
+  id: '/cesta',
+  path: '/cesta',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedInicioRoute = AuthenticatedInicioRouteImport.update({
@@ -82,6 +88,7 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
   '/catalogo': typeof AuthenticatedCatalogoRoute
+  '/cesta': typeof AuthenticatedCestaRoute
   '/inicio': typeof AuthenticatedInicioRoute
   '/mis-resenas': typeof AuthenticatedMisResenasRoute
   '/perfil': typeof AuthenticatedPerfilRoute
@@ -94,6 +101,7 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
   '/catalogo': typeof AuthenticatedCatalogoRoute
+  '/cesta': typeof AuthenticatedCestaRoute
   '/inicio': typeof AuthenticatedInicioRoute
   '/mis-resenas': typeof AuthenticatedMisResenasRoute
   '/perfil': typeof AuthenticatedPerfilRoute
@@ -108,6 +116,7 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
   '/_authenticated/catalogo': typeof AuthenticatedCatalogoRoute
+  '/_authenticated/cesta': typeof AuthenticatedCestaRoute
   '/_authenticated/inicio': typeof AuthenticatedInicioRoute
   '/_authenticated/mis-resenas': typeof AuthenticatedMisResenasRoute
   '/_authenticated/perfil': typeof AuthenticatedPerfilRoute
@@ -122,6 +131,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/reset-password'
     | '/catalogo'
+    | '/cesta'
     | '/inicio'
     | '/mis-resenas'
     | '/perfil'
@@ -134,6 +144,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/reset-password'
     | '/catalogo'
+    | '/cesta'
     | '/inicio'
     | '/mis-resenas'
     | '/perfil'
@@ -147,6 +158,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/reset-password'
     | '/_authenticated/catalogo'
+    | '/_authenticated/cesta'
     | '/_authenticated/inicio'
     | '/_authenticated/mis-resenas'
     | '/_authenticated/perfil'
@@ -199,6 +211,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedCatalogoRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/cesta': {
+      id: '/_authenticated/cesta'
+      path: '/cesta'
+      fullPath: '/cesta'
+      preLoaderRoute: typeof AuthenticatedCestaRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/inicio': {
       id: '/_authenticated/inicio'
       path: '/inicio'
@@ -246,6 +265,7 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedCatalogoRoute: typeof AuthenticatedCatalogoRoute
+  AuthenticatedCestaRoute: typeof AuthenticatedCestaRoute
   AuthenticatedInicioRoute: typeof AuthenticatedInicioRoute
   AuthenticatedMisResenasRoute: typeof AuthenticatedMisResenasRoute
   AuthenticatedPerfilRoute: typeof AuthenticatedPerfilRoute
@@ -256,6 +276,7 @@ interface AuthenticatedRouteRouteChildren {
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedCatalogoRoute: AuthenticatedCatalogoRoute,
+  AuthenticatedCestaRoute: AuthenticatedCestaRoute,
   AuthenticatedInicioRoute: AuthenticatedInicioRoute,
   AuthenticatedMisResenasRoute: AuthenticatedMisResenasRoute,
   AuthenticatedPerfilRoute: AuthenticatedPerfilRoute,
