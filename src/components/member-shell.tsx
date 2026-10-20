@@ -1,3 +1,4 @@
+import { useShop } from "@/components/shop-provider";
 import { Link, useLocation } from "@tanstack/react-router";
 import { BookOpen, Home, MessageSquare, UserRound, PackagePlus, ArrowRight, ShoppingBasket } from "lucide-react";
 import { useEffect, useRef, useState, type ReactNode } from "react";
@@ -6,7 +7,7 @@ import gremlibPeek from "@/assets/gremlib-peek.png.asset.json";
 import { emptyCatalogFilters } from "@/lib/catalog-search";
 
 function gremlinPhrase(path: string) {
-  if (path.startsWith("/cesta")) return "Tu próxima historia puede empezar en el catálogo.";
+  if (path.startsWith("/cesta")) return "Revisa tus libros y prepara tu próxima lectura.";
   if (path.startsWith("/catalogo")) return "¿Buscamos tu próxima aventura?";
   if (path.startsWith("/libro")) return "¡Este tiene buena pinta!";
   if (path.startsWith("/perfil")) return "Este es tu rincón lector.";
@@ -37,6 +38,8 @@ function GremlinPeek() {
 }
 
 export function MemberShell({ children }: { children: ReactNode }) {
+  const { shop } = useShop();
+  const count = shop.items.reduce((sum, item) => sum + item.quantity, 0);
   return <main className="member-page">
     <header className="welcome-header member-header"><Link to="/inicio" className="brand-mark"><BookOpen /><span>GremLib<span className="brand-period">.</span></span></Link><Button variant="quiet" asChild><Link to="/perfil"><UserRound /> Mi perfil</Link></Button></header>
     <div className="member-content">{children}</div>
@@ -44,7 +47,7 @@ export function MemberShell({ children }: { children: ReactNode }) {
       <GremlinPeek />
       <Button variant="quiet" asChild><Link to="/inicio" activeProps={{ className: "is-active" }}><Home /><span>Inicio</span></Link></Button>
       <Button variant="quiet" asChild><Link to="/catalogo" search={emptyCatalogFilters} activeProps={{ className: "is-active" }}><BookOpen /><span>Catálogo</span></Link></Button>
-      <Button variant="quiet" asChild><Link to="/cesta" activeProps={{ className: "is-active", "aria-current": "page" }}><ShoppingBasket aria-hidden="true" /><span>Cesta</span></Link></Button>
+      <Button variant="quiet" asChild><Link to="/cesta" activeProps={{ className: "is-active", "aria-current": "page" }}><ShoppingBasket aria-hidden="true" /><span>Cesta{count > 0 && <span className="basket-count" aria-label={`${count} artículos`}>{count}</span>}</span></Link></Button>
       <Button variant="quiet" asChild><Link to="/perfil" activeProps={{ className: "is-active" }}><UserRound /><span>Perfil</span></Link></Button>
     </nav>
   </main>;

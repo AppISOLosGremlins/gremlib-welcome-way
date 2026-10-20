@@ -15,7 +15,9 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as AuthenticatedCatalogoRouteImport } from './routes/_authenticated/catalogo'
 import { Route as AuthenticatedCestaRouteImport } from './routes/_authenticated/cesta'
+import { Route as AuthenticatedFinalizarCompraRouteImport } from './routes/_authenticated/finalizar-compra'
 import { Route as AuthenticatedInicioRouteImport } from './routes/_authenticated/inicio'
+import { Route as AuthenticatedMisPedidosRouteImport } from './routes/_authenticated/mis-pedidos'
 import { Route as AuthenticatedMisResenasRouteImport } from './routes/_authenticated/mis-resenas'
 import { Route as AuthenticatedPerfilRouteImport } from './routes/_authenticated/perfil'
 import { Route as AuthenticatedReponerRouteImport } from './routes/_authenticated/reponer'
@@ -51,9 +53,20 @@ const AuthenticatedCestaRoute = AuthenticatedCestaRouteImport.update({
   path: '/cesta',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedFinalizarCompraRoute =
+  AuthenticatedFinalizarCompraRouteImport.update({
+    id: '/finalizar-compra',
+    path: '/finalizar-compra',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedInicioRoute = AuthenticatedInicioRouteImport.update({
   id: '/inicio',
   path: '/inicio',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedMisPedidosRoute = AuthenticatedMisPedidosRouteImport.update({
+  id: '/mis-pedidos',
+  path: '/mis-pedidos',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedMisResenasRoute = AuthenticatedMisResenasRouteImport.update({
@@ -89,7 +102,9 @@ export interface FileRoutesByFullPath {
   '/reset-password': typeof ResetPasswordRoute
   '/catalogo': typeof AuthenticatedCatalogoRoute
   '/cesta': typeof AuthenticatedCestaRoute
+  '/finalizar-compra': typeof AuthenticatedFinalizarCompraRoute
   '/inicio': typeof AuthenticatedInicioRoute
+  '/mis-pedidos': typeof AuthenticatedMisPedidosRoute
   '/mis-resenas': typeof AuthenticatedMisResenasRoute
   '/perfil': typeof AuthenticatedPerfilRoute
   '/reponer': typeof AuthenticatedReponerRoute
@@ -102,7 +117,9 @@ export interface FileRoutesByTo {
   '/reset-password': typeof ResetPasswordRoute
   '/catalogo': typeof AuthenticatedCatalogoRoute
   '/cesta': typeof AuthenticatedCestaRoute
+  '/finalizar-compra': typeof AuthenticatedFinalizarCompraRoute
   '/inicio': typeof AuthenticatedInicioRoute
+  '/mis-pedidos': typeof AuthenticatedMisPedidosRoute
   '/mis-resenas': typeof AuthenticatedMisResenasRoute
   '/perfil': typeof AuthenticatedPerfilRoute
   '/reponer': typeof AuthenticatedReponerRoute
@@ -117,7 +134,9 @@ export interface FileRoutesById {
   '/reset-password': typeof ResetPasswordRoute
   '/_authenticated/catalogo': typeof AuthenticatedCatalogoRoute
   '/_authenticated/cesta': typeof AuthenticatedCestaRoute
+  '/_authenticated/finalizar-compra': typeof AuthenticatedFinalizarCompraRoute
   '/_authenticated/inicio': typeof AuthenticatedInicioRoute
+  '/_authenticated/mis-pedidos': typeof AuthenticatedMisPedidosRoute
   '/_authenticated/mis-resenas': typeof AuthenticatedMisResenasRoute
   '/_authenticated/perfil': typeof AuthenticatedPerfilRoute
   '/_authenticated/reponer': typeof AuthenticatedReponerRoute
@@ -132,7 +151,9 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/catalogo'
     | '/cesta'
+    | '/finalizar-compra'
     | '/inicio'
+    | '/mis-pedidos'
     | '/mis-resenas'
     | '/perfil'
     | '/reponer'
@@ -145,7 +166,9 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/catalogo'
     | '/cesta'
+    | '/finalizar-compra'
     | '/inicio'
+    | '/mis-pedidos'
     | '/mis-resenas'
     | '/perfil'
     | '/reponer'
@@ -159,7 +182,9 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/_authenticated/catalogo'
     | '/_authenticated/cesta'
+    | '/_authenticated/finalizar-compra'
     | '/_authenticated/inicio'
+    | '/_authenticated/mis-pedidos'
     | '/_authenticated/mis-resenas'
     | '/_authenticated/perfil'
     | '/_authenticated/reponer'
@@ -218,11 +243,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedCestaRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/finalizar-compra': {
+      id: '/_authenticated/finalizar-compra'
+      path: '/finalizar-compra'
+      fullPath: '/finalizar-compra'
+      preLoaderRoute: typeof AuthenticatedFinalizarCompraRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/inicio': {
       id: '/_authenticated/inicio'
       path: '/inicio'
       fullPath: '/inicio'
       preLoaderRoute: typeof AuthenticatedInicioRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/mis-pedidos': {
+      id: '/_authenticated/mis-pedidos'
+      path: '/mis-pedidos'
+      fullPath: '/mis-pedidos'
+      preLoaderRoute: typeof AuthenticatedMisPedidosRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/mis-resenas': {
@@ -266,7 +305,9 @@ declare module '@tanstack/react-router' {
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedCatalogoRoute: typeof AuthenticatedCatalogoRoute
   AuthenticatedCestaRoute: typeof AuthenticatedCestaRoute
+  AuthenticatedFinalizarCompraRoute: typeof AuthenticatedFinalizarCompraRoute
   AuthenticatedInicioRoute: typeof AuthenticatedInicioRoute
+  AuthenticatedMisPedidosRoute: typeof AuthenticatedMisPedidosRoute
   AuthenticatedMisResenasRoute: typeof AuthenticatedMisResenasRoute
   AuthenticatedPerfilRoute: typeof AuthenticatedPerfilRoute
   AuthenticatedReponerRoute: typeof AuthenticatedReponerRoute
@@ -277,7 +318,9 @@ interface AuthenticatedRouteRouteChildren {
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedCatalogoRoute: AuthenticatedCatalogoRoute,
   AuthenticatedCestaRoute: AuthenticatedCestaRoute,
+  AuthenticatedFinalizarCompraRoute: AuthenticatedFinalizarCompraRoute,
   AuthenticatedInicioRoute: AuthenticatedInicioRoute,
+  AuthenticatedMisPedidosRoute: AuthenticatedMisPedidosRoute,
   AuthenticatedMisResenasRoute: AuthenticatedMisResenasRoute,
   AuthenticatedPerfilRoute: AuthenticatedPerfilRoute,
   AuthenticatedReponerRoute: AuthenticatedReponerRoute,

@@ -470,3 +470,46 @@ html[data-large-text="true"] .home-options .home-option { padding: 20px 16px; ga
 html[data-large-text="true"] .option-copy { overflow-wrap: anywhere; }
 html[data-large-text="true"] .auth-form input:not([type="checkbox"]) { min-height: 52px; }
 html[data-large-text="true"] .welcome-button { height: auto; min-height: 56px; padding-block: 14px; white-space: normal; }
+
+/* Shopping uses the same semantic palette in every accessibility mode. */
+.catalog-book-purchasable { display: flex; align-items: center; gap: 0.75rem; }
+.catalog-book-purchasable .catalog-book-link { flex: 1; min-width: 0; }
+.catalog-add { flex-shrink: 0; min-width: 44px; min-height: 44px; margin-right: 0.75rem; color: var(--primary); }
+.book-add { margin-top: 1rem; }
+.basket-count { display: inline-flex; align-items: center; justify-content: center; margin-left: 0.3rem; min-width: 1.1rem; padding: 0.1rem 0.3rem; border: 1px solid currentColor; border-radius: 1rem; font-size: 0.7rem; }
+.basket-item-actions, .basket-quantity, .shop-order-heading, .shop-total { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; }
+.basket-item-actions { padding: 0 1rem 1rem; flex-wrap: wrap; }
+.basket-quantity button { min-width: 44px; min-height: 44px; }
+.basket-quantity > span { min-width: 1.5rem; text-align: center; font-variant-numeric: tabular-nums; }
+.shop-summary, .shop-order { border: 1px solid var(--border); border-radius: 0.75rem; padding: 1.25rem; margin-block: 1.5rem; background: var(--background); color: var(--foreground); }
+.shop-summary h2, .shop-order h2 { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; }
+.shop-note { color: var(--muted-foreground); font-size: 0.875rem; line-height: 1.6; margin-block: 0.75rem; overflow-wrap: anywhere; }
+.shop-total { flex-wrap: wrap; font-size: 1.125rem; margin-block: 1rem; }
+.shop-total strong { color: var(--primary); font-size: 1.4rem; }
+.shop-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1rem; }
+.shop-actions > * { flex: 1 1 12rem; min-width: 0; height: auto; min-height: 48px; white-space: normal; padding: 0.8rem 1rem; text-align: center; }
+.shop-dialog { width: calc(100% - 2rem); max-width: 30rem; max-height: calc(100dvh - 2rem); overflow-y: auto; background: var(--background); color: var(--foreground); }
+.shop-dialog h2 { display: flex; align-items: center; gap: 0.5rem; padding-right: 1.5rem; }
+.shop-dialog p { overflow-wrap: anywhere; }
+.shop-dialog > button:last-child { min-width: 44px; min-height: 44px; top: 0; right: 0; display: grid; place-items: center; }
+.shop-storage-error { padding: 1rem; margin: 1rem; }
+.checkout-form { margin-top: 1.5rem; }
+.checkout-form fieldset { border: 0; min-width: 0; }
+.checkout-form legend { margin-bottom: 1rem; font-family: var(--font-display); font-size: 1.125rem; }
+.checkout-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.checkout-fields > div { min-width: 0; }
+.checkout-fields label { display: block; margin-bottom: 0.4rem; }
+.checkout-wide { grid-column: 1 / -1; }
+.shop-order-heading { flex-wrap: wrap; }
+.shop-order-heading h2 { display: flex; gap: 0.5rem; align-items: center; overflow-wrap: anywhere; }
+.shop-status { display: inline-flex; align-items: center; gap: 0.3rem; padding: 0.4rem 0.7rem; border: 1px solid var(--primary); border-radius: 1rem; color: var(--primary); background: var(--scene); font-size: 0.875rem; }
+.shop-order-lines { list-style: none; padding: 0; margin-top: 1rem; }
+.shop-order-lines li { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem 1rem; padding-block: 0.75rem; border-bottom: 1px solid var(--border); overflow-wrap: anywhere; }
+.shop-order-lines a { color: var(--foreground); text-decoration: underline; text-underline-offset: 0.2em; min-width: 0; }
+.shop-order-lines a span { display: block; color: var(--muted-foreground); font-size: 0.875rem; margin-top: 0.25rem; }
+.shop-delivery-details summary { cursor: pointer; padding-block: 0.75rem; min-height: 44px; }
+.shop-delivery-details address { font-style: normal; line-height: 1.7; overflow-wrap: anywhere; }
+@media (max-width: 480px) { .checkout-fields { grid-template-columns: minmax(0, 1fr); } .catalog-book-purchasable { gap: 0; } .shop-summary, .shop-order { padding: 1rem; } }
+html[data-large-text="true"] .checkout-fields { grid-template-columns: minmax(0, 1fr); }
+html[data-large-text="true"] .catalog-book-purchasable { flex-wrap: wrap; }
+html[data-large-text="true"] .catalog-book-purchasable .catalog-add { margin: 0 1rem 1rem; }

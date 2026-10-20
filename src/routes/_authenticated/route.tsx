@@ -1,5 +1,6 @@
 import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
 import { supabase } from "@/integrations/supabase/client";
+import { ShopProvider } from "@/components/shop-provider";
 import { MemberShell } from "@/components/member-shell";
 
 export const Route = createFileRoute("/_authenticated")({
@@ -9,5 +10,9 @@ export const Route = createFileRoute("/_authenticated")({
     if (error || !data.user) throw redirect({ to: "/auth", search: { mode: "login" } });
     return { user: data.user };
   },
-  component: () => <MemberShell><Outlet /></MemberShell>,
+  component: AuthenticatedLayout,
 });
+function AuthenticatedLayout() {
+  const { user } = Route.useRouteContext();
+  return <ShopProvider key={user.id} userId={user.id}><MemberShell><Outlet /></MemberShell></ShopProvider>;
+}
