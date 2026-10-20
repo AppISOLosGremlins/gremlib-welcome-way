@@ -10,9 +10,13 @@ Puedes probar la aplicación directamente en la nube sin necesidad de instalar n
 
 * 🌐 **Enlace directo:** [https://gremlib-prototipo.netlify.app](https://gremlib-prototipo.netlify.app)
 
-### Acceso para evaluación
+### 🔑 Credenciales de Acceso para Evaluación
+Utiliza la siguiente cuenta de prueba preconfigurada para acceder a todas las secciones de la app:
 
-Solicita al grupo las credenciales de la cuenta de prueba por un canal privado.
+| Campo | Credencial |
+| :--- | :--- |
+| **Correo electrónico:** | `lagireg344@iconcubic.com` |
+| **Contraseña:** | `lagireg344` |
 
 ---
 
