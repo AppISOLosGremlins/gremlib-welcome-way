@@ -1,27 +1,44 @@
-# Gremlib Welcome Way
+# 📚 GremLib - Aplicación Móvil
 
-Creame una interfaz de una app movil de una libreria llamada GremLib, te he pasado foto de como seria el banner de la app. Para empezar creame el portal de introduccion
+Proyecto universitario desarrollado con React, Vite, Tailwind CSS y Supabase (mediante Lovable).
 
-This project was built with [Lovable](https://lovable.dev).
+---
 
-## Build with Lovable
+## 🚀 Acceso a la Aplicación Desplegada
 
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/e691638c-347a-452e-af86-4fba83c57a20).
+Puedes probar la aplicación directamente en la nube sin necesidad de instalar nada localmente:
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
+* 🌐 **Enlace directo:** [https://gremlib-prototipo.netlify.app](https://gremlib-prototipo.netlify.app)
 
-## Development
+### Acceso para evaluación
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+Solicita al grupo las credenciales de la cuenta de prueba por un canal privado.
 
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
-npm run dev
-```
+---
+
+## 📱 Recomendación de Visualización (Modo Móvil)
+
+Al tratarse del diseño de una **aplicación móvil**, se recomienda simular la pantalla de un teléfono desde el navegador del ordenador:
+
+1. Abre el enlace de la aplicación en Chrome, Edge o Firefox.
+2. Abre las herramientas de desarrollo pulsando **F12** (o clic derecho > *Inspeccionar*).
+3. Activa la vista adaptativa pulsando **`Ctrl + Shift + M`** en Windows/Linux o **`Cmd + Shift + M`** en Mac.
+4. Selecciona un dispositivo en el menú desplegable superior (por ejemplo, *iPhone 14* o *Pixel 7*).
+
+---
+
+## 🛠️ Ejecución en Local (Opcional)
+
+No disponible
+
+---
+
+## 👥 Autores del Proyecto
+[Antonio Miguel Hernández Inocencio] - [antoniomiguel.hernandez1@alu.uclm.es]
+
+[Raúl García Garrido] - [raul.garcia40@alu.uclm.es]
+
+[Ángel Galiano Sáez] - [angel.galiano1@alu.uclm.es]
 
 ## Prototipo de compra
 
