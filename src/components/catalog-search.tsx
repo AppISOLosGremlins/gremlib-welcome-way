@@ -1,3 +1,4 @@
+import { AddToBasket } from "@/components/add-to-basket";
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { BookOpen, Search, SlidersHorizontal, X, RotateCcw } from "lucide-react";
@@ -52,7 +53,7 @@ export function CatalogSearch({ books, filters, onChange }: { books: CatalogBook
     {results.length > 0 ? (
       <ul className="catalog-results">
         {results.map(book => (
-          <li key={book.id} className="catalog-book">
+          <li key={book.id} className="catalog-book catalog-book-purchasable">
             <Link to="/libro/$bookId" params={{ bookId: book.id }} className="catalog-book-link" aria-label={`Ver ficha de ${book.title}`}>
               <div className="catalog-book-info">
                 <span className="catalog-book-genre">{book.genre}</span>
@@ -66,6 +67,7 @@ export function CatalogSearch({ books, filters, onChange }: { books: CatalogBook
               </div>
               <span className="catalog-book-price">{book.price.toFixed(2)} €</span>
             </Link>
+            <AddToBasket book={book} compact />
           </li>
         ))}
       </ul>

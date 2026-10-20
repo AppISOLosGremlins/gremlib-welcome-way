@@ -1,3 +1,4 @@
+import { AddToBasket } from "@/components/add-to-basket";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { queryOptions, useSuspenseQuery } from "@tanstack/react-query";
 import { ArrowLeft, Barcode, BookOpen, Layers, Package, Tag } from "lucide-react";
@@ -66,6 +67,7 @@ function BookPage() {
             <div><dt><Package aria-hidden="true" />Disponibilidad</dt><dd>{book.stock > 0 ? `${book.stock} en stock` : "Agotado"}</dd></div>
           </dl>
           <p className="book-detail-price">{book.price.toFixed(2)} €</p>
+          <AddToBasket book={book} />
         </div>
       </article>
       <BookReviews bookId={book.id} />

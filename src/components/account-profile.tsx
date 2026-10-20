@@ -1,6 +1,6 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { BookOpen, LogOut, MessageSquare, Save } from "lucide-react";
+import { BookOpen, PackageCheck, LogOut, MessageSquare, Save } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { useAuth } from "@/components/auth-provider";
 import { supabase } from "@/integrations/supabase/client";
@@ -40,6 +40,7 @@ export function AccountProfile() {
     <p className="auth-description">Tu cuenta de GremLib está lista.</p>
     <p className="account-email">{user.email}</p>
     <Button variant="quiet" asChild className="profile-reviews-link"><Link to="/mis-resenas"><MessageSquare /> Mis reseñas</Link></Button>
+    <Button variant="quiet" asChild className="profile-reviews-link"><Link to="/mis-pedidos"><PackageCheck aria-hidden="true" /> Mis pedidos</Link></Button>
     {profile.isPending ? <p role="status">Cargando tu perfil…</p> : profile.isError ? <div className="auth-message is-error" role="alert">No se ha podido cargar tu perfil.<Button variant="quiet" onClick={() => void profile.refetch()}>Reintentar</Button></div> : <form className="auth-form" onSubmit={save}>
       <label htmlFor="profile-name">Tu nombre</label><Input id="profile-name" value={name} onChange={e => setName(e.target.value)} required maxLength={80} />
       <fieldset><legend><BookOpen /> ¿Qué te gusta leer?</legend><div className="genre-options">{genres.map(genre => <label key={genre} className="genre-option"><input type="checkbox" checked={preferences.includes(genre)} onChange={e => setPreferences(e.target.checked ? [...preferences, genre] : preferences.filter(p => p !== genre))} />{genre}</label>)}</div></fieldset>
