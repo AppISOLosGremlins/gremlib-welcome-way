@@ -15,8 +15,8 @@ Utiliza la siguiente cuenta de prueba preconfigurada para acceder a todas las se
 
 | Campo | Credencial |
 | :--- | :--- |
-| **Correo electrónico:** | `[CORREO_DEL_PROFESOR_O_PRUEBA]` |
-| **Contraseña:** | `[CONTRASEÑA_DE_PRUEBA]` |
+| **Correo electrónico:** | `[lagireg344@iconcubic.com]` |
+| **Contraseña:** | `[lagireg344]` |
 
 ---
 
