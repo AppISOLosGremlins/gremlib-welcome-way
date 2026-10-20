@@ -287,7 +287,13 @@
 .member-tabs .quiet-button { flex: 1 1 0; min-width: 0; max-width: 220px; height: 54px; display: flex; flex-direction: column; gap: 5px; font-size: 0.625rem; padding: 0 10px; }
 .member-tabs .quiet-button svg { width: 20px; height: 20px; }
 .member-tabs .is-active { color: var(--primary); background: var(--scene); }
-.member-peek { position: absolute; z-index: 11; bottom: 100%; right: 18px; transform: translateY(23%); width: min(88px, 22vw); height: auto; pointer-events: none; }
+.member-peek { position: absolute; z-index: 11; bottom: 100%; right: 18px; transform: translateY(23%); width: min(88px, 22vw); padding: 0; border: 0; background: transparent; cursor: pointer; line-height: 0; -webkit-tap-highlight-color: transparent; }
+.member-peek img { width: 100%; height: auto; pointer-events: none; }
+.member-peek:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; border-radius: 12px; }
+.member-bubble { position: absolute; z-index: 12; bottom: calc(100% + min(70px, 17vw)); right: 12px; max-width: min(220px, 60vw); padding: 8px 12px; border-radius: 14px; background: var(--card); color: var(--foreground); border: 1px solid var(--border); box-shadow: 0 6px 18px -10px color-mix(in oklch, var(--foreground) 35%, transparent); font-size: 0.8125rem; line-height: 1.35; pointer-events: none; animation: member-bubble-in 180ms ease-out; }
+.member-bubble::after { content: ""; position: absolute; bottom: -6px; right: 34px; width: 10px; height: 10px; background: var(--card); border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); transform: rotate(45deg); }
+@keyframes member-bubble-in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .member-bubble { animation: none; } }
 .member-empty { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; min-height: 350px; padding: 35px 0; gap: 18px; color: var(--muted-foreground); }
 .member-empty > svg { width: 52px; height: 52px; color: var(--decoration); stroke-width: 1.2; }
 .member-empty h2, .member-empty h1 { font-family: var(--font-display); font-size: 1.25rem; font-weight: 500; color: var(--foreground); line-height: 1.5; }
