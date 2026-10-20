@@ -15,8 +15,8 @@ Utiliza la siguiente cuenta de prueba preconfigurada para acceder a todas las se
 
 | Campo | Credencial |
 | :--- | :--- |
-| **Correo electrónico:** | `[lagireg344@iconcubic.com]` |
-| **Contraseña:** | `[lagireg344]` |
+| **Correo electrónico:** | `lagireg344@iconcubic.com` |
+| **Contraseña:** | `lagireg344` |
 
 ---
 
