@@ -203,7 +203,6 @@
   .welcome-header .quiet-button svg { width: 13px; }
   .auth-header-actions { gap: 6px; }
   .welcome-header .accessibility-trigger { padding: 8px 10px; font-size: 0.6875rem; white-space: nowrap; }
-  .welcome-header .accessibility-trigger svg { width: 13px; height: 13px; }
   .welcome-content { padding: 16px 25px 27px; }
   .illustration-scene { width: 300px; margin-bottom: 25px; }
   .scene-book { right: -1%; }
