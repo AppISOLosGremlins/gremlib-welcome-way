@@ -1,5 +1,5 @@
 import { useId } from "react";
-import { Accessibility, Contrast, Palette, RotateCcw, Type, Volume2, VolumeX } from "lucide-react";
+import { Contrast, Palette, RotateCcw, Type, Volume2, VolumeX } from "lucide-react";
 import { useAccessibility } from "@/components/accessibility-provider";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
@@ -12,9 +12,9 @@ export function AccessibilitySettingsButton() {
   const { settings, update, reset, speechSupported, speechError, stopReading } = useAccessibility();
   const id = useId();
   return <Dialog>
-    <DialogTrigger asChild><Button variant="outline" className="accessibility-trigger"><Accessibility aria-hidden="true" /> Accesibilidad</Button></DialogTrigger>
+    <DialogTrigger asChild><Button variant="outline" className="accessibility-trigger">Accesibilidad</Button></DialogTrigger>
     <DialogContent className="accessibility-panel" data-accessibility-settings>
-      <DialogHeader><DialogTitle><Accessibility aria-hidden="true" /> Accesibilidad</DialogTitle><DialogDescription>Tu lectura, a tu medida.</DialogDescription></DialogHeader>
+      <DialogHeader><DialogTitle>Accesibilidad</DialogTitle><DialogDescription>Tu lectura, a tu medida.</DialogDescription></DialogHeader>
       <div className="accessibility-options">
         <div className="accessibility-color-setting">
           <label htmlFor={`${id}-colors`}><Palette aria-hidden="true" /> Adaptación para daltonismo</label>
