@@ -1,5 +1,7 @@
 import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
 import { supabase } from "@/integrations/supabase/client";
+import { StaffMode } from "@/components/staff-mode";
+import { verifyRestockAccess } from "@/lib/member.functions";
 import { ShopProvider } from "@/components/shop-provider";
 import { MemberShell } from "@/components/member-shell";
 
@@ -8,11 +10,12 @@ export const Route = createFileRoute("/_authenticated")({
   beforeLoad: async () => {
     const { data, error } = await supabase.auth.getUser();
     if (error || !data.user) throw redirect({ to: "/auth", search: { mode: "login" } });
-    return { user: data.user };
+    const { allowed: staff } = await verifyRestockAccess();
+    return { user: data.user, staff };
   },
   component: AuthenticatedLayout,
 });
 function AuthenticatedLayout() {
-  const { user } = Route.useRouteContext();
-  return <ShopProvider key={user.id} userId={user.id}><MemberShell><Outlet /></MemberShell></ShopProvider>;
+  const { user, staff } = Route.useRouteContext();
+  return <StaffMode key={user.id} id={user.id} staff={staff}><ShopProvider userId={user.id} canBuy={!staff}><MemberShell><Outlet /></MemberShell></ShopProvider></StaffMode>;
 }

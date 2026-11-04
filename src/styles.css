@@ -513,3 +513,12 @@ html[data-large-text="true"] .welcome-button { height: auto; min-height: 56px; p
 html[data-large-text="true"] .checkout-fields { grid-template-columns: minmax(0, 1fr); }
 html[data-large-text="true"] .catalog-book-purchasable { flex-wrap: wrap; }
 html[data-large-text="true"] .catalog-book-purchasable .catalog-add { margin: 0 1rem 1rem; }
+
+.stock-list { display: grid; gap: .75rem; padding: 0; margin: 1rem 0; list-style: none; }
+.stock-list li { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .75rem; padding: 1rem; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); }
+.stock-label { display: inline-block; margin-top: .35rem; border-inline-start: .45rem solid var(--primary); padding-inline-start: .55rem; color: var(--foreground); font-weight: 600; }
+.stock-label[data-level="Crítico"] { border-color: var(--destructive); }
+.stock-label[data-level="Bajo"] { border-color: var(--warm-accent); }
+.stock-list button, .restock-line button { min-height: 44px; }
+.restock-line { display: grid; grid-template-columns: minmax(5rem,1fr) auto; gap: .4rem; margin: 1rem 0; }
+.restock-line label { grid-column: 1 / -1; }

@@ -1,3 +1,6 @@
+import { useQuery } from "@tanstack/react-query";
+import { chooseWorkspace } from "@/components/staff-mode";
+import { verifyRestockAccess } from "@/lib/member.functions";
 import { createFileRoute, Link, Navigate } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
 import { ArrowRight, Mail, ShieldCheck } from "lucide-react";
@@ -18,7 +21,16 @@ export const Route = createFileRoute("/auth")({
 function AuthPage() {
   const { mode } = Route.useSearch();
   const { user, loading, recovery } = useAuth();
-  return <AuthLayout>{loading ? <p className="auth-description" role="status">Preparando tu refugio…</p> : user && !recovery ? <Navigate to="/inicio" replace /> : <AuthForm key={mode} mode={mode} />}</AuthLayout>;
+  return <AuthLayout>{loading ? <p className="auth-description" role="status">Preparando tu refugio…</p> : user && !recovery ? <ChooseLogin id={user.id} /> : <AuthForm key={mode} mode={mode} />}</AuthLayout>;
+}
+function ChooseLogin({ id }: { id: string }) {
+  const access = useQuery({ queryKey: ["login-access", id], queryFn: () => verifyRestockAccess(), staleTime: 0 });
+  const navigate = Route.useNavigate();
+  function enter(admin: boolean) { chooseWorkspace(id, admin); void navigate({ to: "/inicio", replace: true }); }
+  if (access.isError) return <div className="auth-body"><p role="alert">No se han podido comprobar tus permisos.</p><Button onClick={() => void access.refetch()}>Reintentar</Button></div>;
+  if (!access.data) return <p role="status">Comprobando tu cuenta…</p>;
+  if (!access.data.allowed) return <Navigate to="/inicio" replace />;
+  return <section className="auth-body"><p className="welcome-eyebrow">CUENTA DE PERSONAL</p><h1>Elige cómo entrar.</h1><p>Gestiona las existencias o consulta el catálogo. Esta cuenta no realiza compras.</p><div className="shop-actions"><Button variant="welcome" onClick={() => enter(true)}>Entrar en modo administrador</Button><Button variant="outline" onClick={() => enter(false)}>Entrar en modo lectura</Button></div></section>;
 }
 function AuthForm({ mode }: { mode: "login" | "signup" | "forgot" }) {
   const [email, setEmail] = useState(""); const [name, setName] = useState(""); const [password, setPassword] = useState(""); const [confirm, setConfirm] = useState("");

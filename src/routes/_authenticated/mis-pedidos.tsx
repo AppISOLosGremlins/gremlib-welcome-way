@@ -1,11 +1,11 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, redirect, Link } from "@tanstack/react-router";
 import { ArrowLeft, PackageCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { OrderSummary } from "@/components/order-summary";
 import { useShop } from "@/components/shop-provider";
 import { emptyCatalogFilters } from "@/lib/catalog-search";
 import { pageMeta } from "@/lib/page-meta";
-export const Route = createFileRoute("/_authenticated/mis-pedidos")({ head: () => pageMeta("Mis pedidos", "Consulta tus pedidos realizados en GremLib."), component: OrdersPage });
+export const Route = createFileRoute("/_authenticated/mis-pedidos")({ beforeLoad: ({ context }) => { if (context.staff) throw redirect({ to: "/inicio" }); }, head: () => pageMeta("Mis pedidos", "Consulta tus pedidos realizados en GremLib."), component: OrdersPage });
 function OrdersPage() {
   const { shop, ready, error } = useShop();
   return <><Button variant="quiet" asChild><Link to="/perfil"><ArrowLeft aria-hidden="true" /> Volver al perfil</Link></Button><p className="welcome-eyebrow">TUS HISTORIAS</p><h1 className="member-title">Mis pedidos</h1><p className="shop-note">Pedidos de demostración guardados para tu cuenta en este navegador.</p>
