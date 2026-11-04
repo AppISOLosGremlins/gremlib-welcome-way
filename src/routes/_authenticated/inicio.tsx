@@ -1,3 +1,4 @@
+import { useStaffMode } from "@/components/staff-mode";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { queryOptions, useSuspenseQuery } from "@tanstack/react-query";
 import { ArrowUpRight, BookOpen, MessageSquare, PackagePlus, Leaf } from "lucide-react";
@@ -17,15 +18,17 @@ export const Route = createFileRoute("/_authenticated/inicio")({
   component: MemberHome,
 });
 function MemberHome() {
+  const { staff, admin, toggle } = useStaffMode();
   const { data } = useSuspenseQuery(homeOptions);
   return <>
     <div className="accessibility-entry"><AccessibilitySettingsButton /></div>
     <section className="member-greeting"><div><p className="welcome-eyebrow">TU REFUGIO LITERARIO</p><h1 className="member-title">Hola{data.displayName ? `, ${data.displayName.split(" ")[0]}` : ""}<span>.</span></h1><p>¿Qué historia comienza hoy?</p></div><img src={banner.url} alt="El duende lector de GremLib" /></section>
     <div className="member-section-heading"><h2>Tu próximo capítulo</h2><span><Leaf /> A tu ritmo</span></div>
+    {staff && <section className="shop-summary"><p><strong>{admin ? "Modo administrador" : "Modo lectura"}</strong> · Cuenta de personal</p><Button variant="outline" onClick={toggle}>{admin ? "Cambiar a modo lectura" : "Cambiar a modo administrador"}</Button></section>}
     <div className="home-options">
       <Button variant="quiet" asChild><Link to="/catalogo" search={emptyCatalogFilters} className="home-option catalog-option"><span className="option-icon"><BookOpen /></span><span className="option-copy"><span className="option-kicker">EXPLORA</span><strong>Catálogo</strong><span>Encuentra tu próxima lectura.</span></span><ArrowUpRight className="option-arrow" /></Link></Button>
       <Button variant="quiet" asChild><Link to="/mis-resenas" className="home-option review-option"><span className="option-icon"><MessageSquare /></span><span className="option-copy"><span className="option-kicker">COMPARTE</span><strong>Mis reseñas</strong><span>Cada lectura merece una opinión.</span></span><ArrowUpRight className="option-arrow" /></Link></Button>
-      {data.isAdmin && <Button variant="quiet" asChild><Link to="/reponer" className="home-option restock-option"><span className="option-icon"><PackagePlus /></span><span className="option-copy"><span className="option-kicker">ADMINISTRACIÓN</span><strong>Reponer</strong><span>Cuida las existencias de la librería.</span></span><ArrowUpRight className="option-arrow" /></Link></Button>}
+      {admin && <Button variant="quiet" asChild><Link to="/reponer" className="home-option restock-option"><span className="option-icon"><PackagePlus /></span><span className="option-copy"><span className="option-kicker">ADMINISTRACIÓN</span><strong>Gestión de stock</strong><span>Cuida las existencias de la librería.</span></span><ArrowUpRight className="option-arrow" /></Link></Button>}
     </div>
     <p className="member-signature"><BookOpen /> Una aventura en cada página.</p>
   </>;

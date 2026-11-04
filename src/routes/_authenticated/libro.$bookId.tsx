@@ -16,7 +16,7 @@ const bookOptions = (bookId: string) => queryOptions({
     if (!book) throw notFound();
     return book;
   },
-  staleTime: 0,
+  refetchInterval: 8000, staleTime: 0,
 });
 
 export const Route = createFileRoute("/_authenticated/libro/$bookId")({

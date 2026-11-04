@@ -1,3 +1,4 @@
+import { useStaffMode } from "./staff-mode";
 import { useShop } from "@/components/shop-provider";
 import { Link, useLocation } from "@tanstack/react-router";
 import { BookOpen, Home, MessageSquare, UserRound, PackagePlus, ArrowRight, ShoppingBasket } from "lucide-react";
@@ -38,6 +39,7 @@ function GremlinPeek() {
 }
 
 export function MemberShell({ children }: { children: ReactNode }) {
+  const { staff, admin } = useStaffMode();
   const { shop } = useShop();
   const count = shop.items.reduce((sum, item) => sum + item.quantity, 0);
   return <main className="member-page">
@@ -47,7 +49,7 @@ export function MemberShell({ children }: { children: ReactNode }) {
       <GremlinPeek />
       <Button variant="quiet" asChild><Link to="/inicio" activeProps={{ className: "is-active" }}><Home /><span>Inicio</span></Link></Button>
       <Button variant="quiet" asChild><Link to="/catalogo" search={emptyCatalogFilters} activeProps={{ className: "is-active" }}><BookOpen /><span>Catálogo</span></Link></Button>
-      <Button variant="quiet" asChild><Link to="/cesta" activeProps={{ className: "is-active", "aria-current": "page" }}><ShoppingBasket aria-hidden="true" /><span>Cesta{count > 0 && <span className="basket-count" aria-label={`${count} artículos`}>{count}</span>}</span></Link></Button>
+      {staff ? (admin ? <Button variant="quiet" asChild><Link to="/reponer" activeProps={{ className: "is-active" }}><PackagePlus /><span>Stock</span></Link></Button> : null) : <Button variant="quiet" asChild><Link to="/cesta" activeProps={{ className: "is-active", "aria-current": "page" }}><ShoppingBasket aria-hidden="true" /><span>Cesta{count > 0 && <span className="basket-count" aria-label={`${count} artículos`}>{count}</span>}</span></Link></Button>}
       <Button variant="quiet" asChild><Link to="/perfil" activeProps={{ className: "is-active" }}><UserRound /><span>Perfil</span></Link></Button>
     </nav>
   </main>;

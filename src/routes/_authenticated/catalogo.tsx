@@ -6,7 +6,7 @@ import { getCatalogBooks } from "@/lib/member.functions";
 import { pageMeta } from "@/lib/page-meta";
 import { Button } from "@/components/ui/button";
 
-const catalogOptions = queryOptions({ queryKey: ["catalog-books"], queryFn: () => getCatalogBooks(), staleTime: 0 });
+const catalogOptions = queryOptions({ queryKey: ["catalog-books"], queryFn: () => getCatalogBooks(), refetchInterval: 8000, staleTime: 0 });
 export const Route = createFileRoute("/_authenticated/catalogo")({
   validateSearch: validateCatalogSearch,
   loader: ({ context }) => context.queryClient.ensureQueryData(catalogOptions),

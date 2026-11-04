@@ -1,5 +1,5 @@
 import { useRef, useState, type FormEvent } from "react";
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, redirect, Link } from "@tanstack/react-router";
 import { ArrowLeft, Check, PackageCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,7 +10,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 import { deliverySchema, money, totalCents, type Delivery, type Order } from "@/lib/shop";
 import { pageMeta } from "@/lib/page-meta";
 
-export const Route = createFileRoute("/_authenticated/finalizar-compra")({ head: () => pageMeta("Confirmar pedido", "Revisa la entrega y confirma tu pedido de demostración."), component: CheckoutPage });
+export const Route = createFileRoute("/_authenticated/finalizar-compra")({ beforeLoad: ({ context }) => { if (context.staff) throw redirect({ to: "/inicio" }); }, head: () => pageMeta("Confirmar pedido", "Revisa la entrega y confirma tu pedido de demostración."), component: CheckoutPage });
 const fields: { key: keyof Delivery; label: string; autocomplete: string; type?: string; max: number }[] = [
   { key: "name", label: "Nombre y apellidos", autocomplete: "name", max: 120 },
   { key: "email", label: "Correo electrónico", autocomplete: "email", type: "email", max: 254 },

@@ -4,16 +4,16 @@ import { Check, ShoppingBasket } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import type { CatalogBook } from "@/lib/catalog-search";
-import { getCatalogBooks } from "@/lib/member.functions";
+import { getCatalogBooks, verifyRestockAccess } from "@/lib/member.functions";
 import { addBook, deliverySchema, emptyShop, quantityLimit, shopSchema, totalCents, validateCheckout, type Delivery, type Order, type Shop } from "@/lib/shop";
 
 type ShopContextValue = {
-  shop: Shop; ready: boolean; error: string; busy: boolean;
-  add: (book: CatalogBook) => void; quantity: (id: string, quantity: number) => void;
+  canBuy: boolean; shop: Shop; ready: boolean; error: string; busy: boolean;
+  add: (book: CatalogBook) => void; quantity: (id: string, quantity: number, currentStock?: number) => void;
   remove: (id: string) => void; checkout: (delivery: Delivery) => Promise<Order>;
 };
 const ShopContext = createContext<ShopContextValue | null>(null);
-export function ShopProvider({ userId, children }: { userId: string; children: ReactNode }) {
+export function ShopProvider({ userId, children, canBuy = true }: { userId: string; canBuy?: boolean; children: ReactNode }) {
   const key = `gremlib-shop-v1:${userId}`;
   const [shop, setShop] = useState<Shop>(emptyShop);
   const [ready, setReady] = useState(false);
@@ -46,7 +46,7 @@ export function ShopProvider({ userId, children }: { userId: string; children: R
     setShop(next); setError("");
   }
   function change(fn: (state: Shop) => Shop) {
-    if (!ready || submitting.current) return false;
+    if (!canBuy || !ready || submitting.current) return false;
     try { save(fn(readLatest())); return true; }
     catch (e) { setError(e instanceof Error && !(e instanceof DOMException) ? e.message : "No se han podido guardar los cambios. Comprueba el almacenamiento del navegador."); return false; }
   }
@@ -54,21 +54,23 @@ export function ShopProvider({ userId, children }: { userId: string; children: R
     trigger.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
     if (change(state => ({ ...state, items: addBook(state.items, book) }))) setAdded(book.title);
   }
-  function quantity(id: string, quantity: number) {
+  function quantity(id: string, quantity: number, currentStock?: number) {
     change(state => {
       const item = state.items.find(item => item.id === id);
-      if (!item || !Number.isInteger(quantity) || quantity < 1 || quantity > quantityLimit(item)) throw new Error("Revisa la cantidad de ejemplares.");
-      return { ...state, items: state.items.map(item => item.id === id ? { ...item, quantity } : item) };
+      if (!item || !Number.isInteger(quantity) || quantity < 1 || (quantity > item.quantity && quantity > quantityLimit({ stock: currentStock ?? item.stock }))) throw new Error("Revisa la cantidad de ejemplares.");
+      return { ...state, items: state.items.map(item => item.id === id ? { ...item, quantity, ...(currentStock !== undefined && { stock: currentStock }) } : item) };
     });
   }
   function remove(id: string) { change(state => ({ ...state, items: state.items.filter(item => item.id !== id) })); }
   async function checkout(delivery: Delivery) {
+    if (!canBuy) throw new Error("Las cuentas de personal no pueden comprar.");
     if (!ready || submitting.current) throw new Error("Espera a que termine la operación actual.");
     submitting.current = true; setBusy(true);
     try {
       const address = deliverySchema.parse(delivery);
       const before = readLatest();
-      const books = await getCatalogBooks();
+      const [access, books] = await Promise.all([verifyRestockAccess(), getCatalogBooks()]);
+      if (access.allowed) throw new Error("Las cuentas de personal no pueden comprar.");
       const latest = readLatest();
       if (JSON.stringify(before.items) !== JSON.stringify(latest.items)) throw new Error("La cesta ha cambiado en otra ventana. Vuelve a la cesta y revisa el pedido.");
       validateCheckout(latest.items, books);
@@ -81,7 +83,7 @@ export function ShopProvider({ userId, children }: { userId: string; children: R
       throw e;
     } finally { submitting.current = false; setBusy(false); }
   }
-  return <ShopContext.Provider value={{ shop, ready, error, busy, add, quantity, remove, checkout }}>
+  return <ShopContext.Provider value={{ canBuy, shop, ready, error, busy, add, quantity, remove, checkout }}>
     {error && <div className="shop-storage-error auth-message is-error" role="alert">{error}</div>}
     {children}
     <Dialog open={!!added} onOpenChange={open => { if (!open) setAdded(""); }}>

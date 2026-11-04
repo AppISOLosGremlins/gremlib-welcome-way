@@ -2,15 +2,15 @@ import { act, cleanup, fireEvent, render, screen, waitFor } from "@testing-libra
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { ShopProvider, useShop } from "@/components/shop-provider";
 import type { Delivery } from "@/lib/shop";
-const { getCatalogBooks } = vi.hoisted(() => ({ getCatalogBooks: vi.fn() }));
-vi.mock("@/lib/member.functions", () => ({ getCatalogBooks }));
+const { getCatalogBooks, verifyRestockAccess } = vi.hoisted(() => ({ getCatalogBooks: vi.fn(), verifyRestockAccess: vi.fn() }));
+vi.mock("@/lib/member.functions", () => ({ getCatalogBooks, verifyRestockAccess }));
 vi.mock("@tanstack/react-router", () => ({ Link: ({ to, children, ...props }: any) => <a href={to} {...props}>{children}</a> }));
 const book = { id: "one", title: "Libro de prueba", author: "Autor", isbn: "123", genre: "Fantasía", format: "Tapa blanda", price: 10.1, stock: 3 };
 const delivery: Delivery = { name: "Ana Prueba", email: "ana@example.com", phone: "600123456", address: "Calle Prueba 1", postalCode: "02001", city: "Albacete", province: "Albacete", country: "España" };
 let shop: ReturnType<typeof useShop>;
 function Probe() { shop = useShop(); return <button onClick={() => shop.add(book)}>Añadir</button>; }
 function mount(id = "user-a") { return render(<ShopProvider key={id} userId={id}><Probe /></ShopProvider>); }
-beforeEach(() => { localStorage.clear(); getCatalogBooks.mockResolvedValue([book]); });
+beforeEach(() => { localStorage.clear(); verifyRestockAccess.mockResolvedValue({allowed:false}); getCatalogBooks.mockResolvedValue([book]); });
 afterEach(() => { cleanup(); vi.restoreAllMocks(); });
 describe("Persistencia y confirmación simulada", () => {
   it("ofrece ir a la cesta o seguir comprando y conserva la cesta al recargar", async () => {
@@ -28,6 +28,12 @@ describe("Persistencia y confirmación simulada", () => {
     view.unmount(); const other = mount("user-b"); await waitFor(() => expect(shop.ready).toBe(true));
     expect(shop.shop.orders).toHaveLength(0);
     other.unmount(); mount(); await waitFor(() => expect(shop.shop.orders).toHaveLength(1));
+  });
+  it("no admite compras si la cuenta recibe un rol de personal con la cesta abierta", async () => {
+    mount(); await waitFor(() => expect(shop.ready).toBe(true)); act(() => shop.add(book));
+    verifyRestockAccess.mockResolvedValue({ allowed: true });
+    await act(async () => { await expect(shop.checkout(delivery)).rejects.toThrow(/personal/); });
+    expect(shop.shop.orders).toHaveLength(0); expect(shop.shop.items).toHaveLength(1);
   });
   it("impide una doble confirmación simultánea", async () => {
     mount(); await waitFor(() => expect(shop.ready).toBe(true)); act(() => shop.add(book));

@@ -5,7 +5,8 @@ import { quantityLimit } from "@/lib/shop";
 import type { CatalogBook } from "@/lib/catalog-search";
 
 export function AddToBasket({ book, compact = false }: { book: CatalogBook; compact?: boolean }) {
-  const { add, ready, busy, shop } = useShop();
+  const { add, ready, busy, shop, canBuy } = useShop();
+  if (!canBuy) return null;
   const count = shop.items.find(item => item.id === book.id)?.quantity ?? 0;
   const soldOut = quantityLimit(book) === 0;
   const atLimit = count >= quantityLimit(book);

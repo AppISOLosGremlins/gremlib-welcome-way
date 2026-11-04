@@ -1,15 +1,13 @@
+import { restockRequest } from "./stock";
 import { createServerFn } from "@tanstack/react-start";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 
 export const getMemberHome = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
-    const [profile, role] = await Promise.all([
-      context.supabase.from("profiles").select("display_name").eq("id", context.userId).single(),
-      context.supabase.rpc("has_role", { _user_id: context.userId, _role: "admin" }),
-    ]);
-    if (profile.error || role.error) throw new Error("No se ha podido cargar tu inicio.");
-    return { displayName: profile.data.display_name, isAdmin: role.data === true };
+    const profile = await context.supabase.from("profiles").select("display_name").eq("id", context.userId).single();
+    if (profile.error) throw new Error("No se ha podido cargar tu inicio.");
+    return { displayName: profile.data.display_name };
   });
 
 export const getCatalogBooks = createServerFn({ method: "GET" })
@@ -40,7 +38,16 @@ export const getBookDetail = createServerFn({ method: "GET" })
 export const verifyRestockAccess = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
-    const { data, error } = await context.supabase.rpc("has_role", { _user_id: context.userId, _role: "admin" });
+    const { data, error } = await context.supabase.from("user_roles").select("role").eq("user_id", context.userId);
     if (error) throw new Error("No se han podido comprobar tus permisos.");
-    return { allowed: data === true };
+    return { allowed: data?.some(row => row.role === "admin" || row.role === "employee") === true };
+  });
+
+export const confirmRestock = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((input: unknown) => restockRequest.parse(input))
+  .handler(async ({ context, data }) => {
+    const { error } = await context.supabase.rpc("confirm_restock", { request_id: data.requestId, items: data.items });
+    if (error) throw new Error(error.code === "42501" ? "Ya no tienes permiso para reponer." : "No se pudo confirmar la reposición. Comprueba la conexión y vuelve a intentarlo.");
+    return { confirmed: true };
   });
