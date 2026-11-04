@@ -83,6 +83,27 @@ export type Database = {
         }
         Relationships: []
       }
+      restock_requests: {
+        Row: {
+          actor: string
+          created_at: string
+          items: Json
+          request_id: string
+        }
+        Insert: {
+          actor: string
+          created_at?: string
+          items: Json
+          request_id: string
+        }
+        Update: {
+          actor?: string
+          created_at?: string
+          items?: Json
+          request_id?: string
+        }
+        Relationships: []
+      }
       reviews: {
         Row: {
           author_name: string
@@ -153,7 +174,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      confirm_restock: { Args: { request_id: string; items: Json }; Returns: undefined }
+      confirm_restock: {
+        Args: { items: Json; request_id: string }
+        Returns: undefined
+      }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]

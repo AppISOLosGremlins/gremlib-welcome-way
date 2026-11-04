@@ -15,6 +15,13 @@
       "when": 1791971368440,
       "tag": "0001_create_reviews",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1793791479478,
+      "tag": "0002_staff_restock",
+      "breakpoints": true
     }
   ]
 }
