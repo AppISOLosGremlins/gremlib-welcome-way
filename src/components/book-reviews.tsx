@@ -39,7 +39,7 @@ export function BookReviews({ bookId }: { bookId: string }) {
   const mutation = useMutation({
     mutationFn: () => createReview({ data: { bookId, rating, body } }),
     onSuccess: () => { playSound("review"); setBody(""); setRating(0); void qc.invalidateQueries({ queryKey: ["book-reviews", bookId] }); void qc.invalidateQueries({ queryKey: ["my-reviews"] }); },
-    onError: (e) => setError(e instanceof Error ? e.message : "No se ha podido publicar tu reseña."),
+    onError: (e) => { playSound("error"); setError(e instanceof Error ? e.message : "No se ha podido publicar tu reseña."); },
   });
   function submit(e: FormEvent) {
     e.preventDefault(); setError("");

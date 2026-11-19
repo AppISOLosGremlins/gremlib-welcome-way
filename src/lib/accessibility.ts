@@ -12,9 +12,10 @@ export type AccessibilitySettings = {
   largeText: boolean;
   readOnTouch: boolean;
   soundEffects: boolean;
+  vibration: boolean;
 };
 export const defaultAccessibilitySettings: AccessibilitySettings = {
-  colorMode: "none", highContrast: false, largeText: false, readOnTouch: false, soundEffects: true,
+  colorMode: "none", highContrast: false, largeText: false, readOnTouch: false, soundEffects: true, vibration: true,
 };
 export function parseAccessibilitySettings(value: unknown): AccessibilitySettings {
   if (!value || typeof value !== "object") return { ...defaultAccessibilitySettings };
@@ -25,6 +26,7 @@ export function parseAccessibilitySettings(value: unknown): AccessibilitySetting
     largeText: data["largeText"] === true,
     readOnTouch: data["readOnTouch"] === true,
     soundEffects: data["soundEffects"] !== false,
+    vibration: data["vibration"] !== false,
   };
 }
 

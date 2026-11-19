@@ -1,3 +1,4 @@
+import { playSound } from "@/lib/sounds";
 import { useQuery } from "@tanstack/react-query";
 import { chooseWorkspace } from "@/components/staff-mode";
 import { verifyRestockAccess } from "@/lib/member.functions";
@@ -52,7 +53,7 @@ function AuthForm({ mode }: { mode: "login" | "signup" | "forgot" }) {
       } else {
         const { error } = await supabase.auth.signInWithPassword({ email: email.trim(), password }); if (error) throw error;
       }
-    } catch (e) { setError(authErrorMessage(e instanceof Error ? e : new Error("Unknown"))); } finally { setBusy(false); }
+    } catch (e) { playSound("error"); setError(authErrorMessage(e instanceof Error ? e : new Error("Unknown"))); } finally { setBusy(false); }
   }
   async function google() {
     setBusy(true); setError("");
