@@ -25,6 +25,7 @@ export function AccessibilitySettingsButton() {
         </div>
         <div className="accessibility-setting"><label htmlFor={`${id}-contrast`}><Contrast aria-hidden="true" /> Alto contraste</label><Switch id={`${id}-contrast`} checked={settings.highContrast} onCheckedChange={highContrast => update({ highContrast })} /></div>
         <div className="accessibility-setting"><label htmlFor={`${id}-read`}><Volume2 aria-hidden="true" /> Leer al tocar</label><Switch id={`${id}-read`} checked={settings.readOnTouch} disabled={!speechSupported} onCheckedChange={readOnTouch => update({ readOnTouch })} /></div>
+        <div className="accessibility-setting"><label htmlFor={`${id}-sound`}><Volume2 aria-hidden="true" /> Efectos de sonido</label><Switch id={`${id}-sound`} checked={settings.soundEffects} onCheckedChange={soundEffects => update({ soundEffects })} /></div>
         {!speechSupported && <p className="accessibility-note" role="status">La lectura en voz alta no está disponible en este navegador.</p>}
         {speechError && <p className="accessibility-note" role="alert">{speechError}</p>}
         {settings.readOnTouch && <Button variant="quiet" onClick={stopReading}><VolumeX aria-hidden="true" /> Detener lectura</Button>}

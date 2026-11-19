@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import type { CatalogBook } from "@/lib/catalog-search";
 import { getCatalogBooks, verifyRestockAccess } from "@/lib/member.functions";
+import { playSound } from "@/lib/sounds";
 import { addBook, deliverySchema, emptyShop, quantityLimit, shopSchema, totalCents, validateCheckout, type Delivery, type Order, type Shop } from "@/lib/shop";
 
 type ShopContextValue = {
@@ -52,7 +53,7 @@ export function ShopProvider({ userId, children, canBuy = true }: { userId: stri
   }
   function add(book: CatalogBook) {
     trigger.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
-    if (change(state => ({ ...state, items: addBook(state.items, book) }))) setAdded(book.title);
+    if (change(state => ({ ...state, items: addBook(state.items, book) }))) { setAdded(book.title); playSound("add"); }
   }
   function quantity(id: string, quantity: number, currentStock?: number) {
     change(state => {
@@ -61,7 +62,7 @@ export function ShopProvider({ userId, children, canBuy = true }: { userId: stri
       return { ...state, items: state.items.map(item => item.id === id ? { ...item, quantity, ...(currentStock !== undefined && { stock: currentStock }) } : item) };
     });
   }
-  function remove(id: string) { change(state => ({ ...state, items: state.items.filter(item => item.id !== id) })); }
+  function remove(id: string) { if (change(state => ({ ...state, items: state.items.filter(item => item.id !== id) }))) playSound("remove"); }
   async function checkout(delivery: Delivery) {
     if (!canBuy) throw new Error("Las cuentas de personal no pueden comprar.");
     if (!ready || submitting.current) throw new Error("Espera a que termine la operación actual.");
@@ -77,6 +78,7 @@ export function ShopProvider({ userId, children, canBuy = true }: { userId: stri
       const order: Order = { id: typeof crypto.randomUUID === "function" ? crypto.randomUUID() : Array.from(crypto.getRandomValues(new Uint8Array(16)), byte => byte.toString(16).padStart(2, "0")).join(""), createdAt: new Date().toISOString(), status: "realizado", items: latest.items.map(item => ({ ...item })), delivery: address, totalCents: totalCents(latest.items) };
       // One write records the order and empties the basket together.
       save({ ...latest, items: [], orders: [order, ...latest.orders] });
+      playSound("order");
       return order;
     } catch (e) {
       if (e instanceof DOMException) throw new Error("No se ha podido guardar el pedido. Tu cesta sigue disponible; comprueba el almacenamiento del navegador.");

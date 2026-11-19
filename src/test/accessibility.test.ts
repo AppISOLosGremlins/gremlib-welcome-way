@@ -7,7 +7,7 @@ describe("Accessibility preferences", () => {
     expect(parseAccessibilitySettings({ colorMode: "invalid", largeText: "true", highContrast: 1 })).toEqual(defaultAccessibilitySettings);
   });
   it("retains every valid preference", () => {
-    const saved = { colorMode: "tritanopia", largeText: true, highContrast: true, readOnTouch: true };
+    const saved = { colorMode: "tritanopia", largeText: true, highContrast: true, readOnTouch: true, soundEffects: false };
     expect(parseAccessibilitySettings(saved)).toEqual(saved);
   });
 });

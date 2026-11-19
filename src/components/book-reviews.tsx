@@ -3,6 +3,7 @@ import { queryOptions, useMutation, useQueryClient, useSuspenseQuery } from "@ta
 import { Star, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
+import { playSound } from "@/lib/sounds";
 import { createReview, getBookReviews } from "@/lib/reviews.functions";
 
 export const bookReviewsOptions = (bookId: string) => queryOptions({ queryKey: ["book-reviews", bookId], queryFn: () => getBookReviews({ data: bookId }), staleTime: 0 });
@@ -37,7 +38,7 @@ export function BookReviews({ bookId }: { bookId: string }) {
   const [error, setError] = useState("");
   const mutation = useMutation({
     mutationFn: () => createReview({ data: { bookId, rating, body } }),
-    onSuccess: () => { setBody(""); setRating(0); void qc.invalidateQueries({ queryKey: ["book-reviews", bookId] }); void qc.invalidateQueries({ queryKey: ["my-reviews"] }); },
+    onSuccess: () => { playSound("review"); setBody(""); setRating(0); void qc.invalidateQueries({ queryKey: ["book-reviews", bookId] }); void qc.invalidateQueries({ queryKey: ["my-reviews"] }); },
     onError: (e) => setError(e instanceof Error ? e.message : "No se ha podido publicar tu reseña."),
   });
   function submit(e: FormEvent) {
