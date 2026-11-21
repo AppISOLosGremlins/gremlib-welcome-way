@@ -1,0 +1,1325 @@
+{
+  "method": "WCAG relative luminance; Machado 2009 severity 1 in linear sRGB; OKLab distance is only a regression heuristic",
+  "results": [
+    {
+      "mode": "none",
+      "highContrast": false,
+      "checks": [
+        {
+          "fg": "foreground",
+          "bg": "background",
+          "min": 4.5,
+          "ratio": 13.701920706505078
+        },
+        {
+          "fg": "foreground",
+          "bg": "card",
+          "min": 4.5,
+          "ratio": 14.423049537655295
+        },
+        {
+          "fg": "card-foreground",
+          "bg": "card",
+          "min": 4.5,
+          "ratio": 20.171543375572078
+        },
+        {
+          "fg": "popover-foreground",
+          "bg": "popover",
+          "min": 4.5,
+          "ratio": 20.171543375572078
+        },
+        {
+          "fg": "muted-foreground",
+          "bg": "background",
+          "min": 4.5,
+          "ratio": 6.719513495743543
+        },
+        {
+          "fg": "muted-foreground",
+          "bg": "card",
+          "min": 4.5,
+          "ratio": 7.073159894440272
+        },
+        {
+          "fg": "muted-foreground",
+          "bg": "scene",
+          "min": 4.5,
+          "ratio": 6.037632223199347
+        },
+        {
+          "fg": "muted-foreground",
+          "bg": "review-surface",
+          "min": 4.5,
+          "ratio": 6.2767587259286834
+        },
+        {
+          "fg": "muted-foreground",
+          "bg": "admin-surface",
+          "min": 4.5,
+          "ratio": 6.061434510471286
+        },
+        {
+          "fg": "primary",
+          "bg": "background",
+          "min": 4.5,
+          "ratio": 7.425405589745633
+        },
+        {
+          "fg": "primary",
+          "bg": "scene",
+          "min": 4.5,
+          "ratio": 6.671891958751389
+        },
+        {
+          "fg": "primary-foreground",
+          "bg": "primary",
+          "min": 4.5,
+          "ratio": 7.598145426624161
+        },
+        {
+          "fg": "warm-accent",
+          "bg": "background",
+          "min": 4.5,
+          "ratio": 6.158706008935848
+        },
+        {
+          "fg": "review-ink",
+          "bg": "review-surface",
+          "min": 4.5,
+          "ratio": 5.724394192452815
+        },
+        {
+          "fg": "admin-ink",
+          "bg": "admin-surface",
+          "min": 4.5,
+          "ratio": 5.774914501506953
+        },
+        {
+          "fg": "destructive",
+          "bg": "background",
+          "min": 4.5,
+          "ratio": 7.006736994975703
+        },
+        {
+          "fg": "destructive-foreground",
+          "bg": "destructive",
+          "min": 4.5,
+          "ratio": 7.04589011770636
+        },
+        {
+          "fg": "input",
+          "bg": "label-background",
+          "min": 3,
+          "ratio": 4.785386648117441
+        },
+        {
+          "fg": "input",
+          "bg": "background",
+          "min": 3,
+          "ratio": 4.58323458627067
+        },
+        {
+          "fg": "accessibility-focus",
+          "bg": "background",
+          "min": 3,
+          "ratio": 7.425405589745633
+        },
+        {
+          "fg": "accessibility-focus",
+          "bg": "card",
+          "min": 3,
+          "ratio": 7.816202921626805
+        },
+        {
+          "fg": "stock-critical",
+          "bg": "card",
+          "min": 3,
+          "ratio": 7.375499898191526
+        },
+        {
+          "fg": "stock-low",
+          "bg": "card",
+          "min": 3,
+          "ratio": 4.499550492455284
+        },
+        {
+          "fg": "stock-normal",
+          "bg": "card",
+          "min": 3,
+          "ratio": 7.32895894466509
+        }
+      ],
+      "stock": [
+        "#a51f35",
+        "#a96800",
+        "#28613c"
+      ],
+      "simulated": [
+        "#a51f35",
+        "#a96800",
+        "#28613c"
+      ],
+      "distances": [
+        0.16443780346989606,
+        0.2377678088102241,
+        0.19679113581154437
+      ]
+    },
+    {
+      "mode": "none",
+      "highContrast": true,
+      "checks": [
+        {
+          "fg": "foreground",
+          "bg": "background",
+          "min": 4.5,
+          "ratio": 19.672131147540984
+        },
+        {
+          "fg": "foreground",
+          "bg": "card",
+          "min": 4.5,
+          "ratio": 19.672131147540984
+        },
+        {
+          "fg": "card-foreground",
+          "bg": "card",
+          "min": 4.5,
+          "ratio": 19.672131147540984
+        },
+        {
+          "fg": "popover-foreground",
+          "bg": "popover",
+          "min": 4.5,
+          "ratio": 19.672131147540984
+        },
+        {
+          "fg": "muted-foreground",
+          "bg": "background",
+          "min": 4.5,
+          "ratio": 13.636363636363637
+        },
+        {
+          "fg": "muted-foreground",
+          "bg": "card",
+          "min": 4.5,
+          "ratio": 13.636363636363637
+        },
+        {
+          "fg": "muted-foreground",
+          "bg": "scene",
+          "min": 4.5,
+          "ratio": 11.63996710478551
+        },
+        {
+          "fg": "muted-foreground",
+          "bg": "review-surface",
+          "min": 4.5,
+          "ratio": 12.100979720783664
+        },
+        {
+          "fg": "muted-foreground",
+          "bg": "admin-surface",
+          "min": 4.5,
+          "ratio": 11.685855597264306
+        },
+        {
+          "fg": "primary",
+          "bg": "background",
+          "min": 4.5,
+          "ratio": 7.816202921626805
+        },
+        {
+          "fg": "primary",
+          "bg": "scene",
+          "min": 4.5,
+          "ratio": 6.671891958751389
+        },
+        {
+          "fg": "primary-foreground",
+          "bg": "primary",
+          "min": 4.5,
+          "ratio": 7.598145426624161
+        },
+        {
+          "fg": "warm-accent",
+          "bg": "background",
+          "min": 4.5,
+          "ratio": 6.48283724285207
+        },
+        {
+          "fg": "review-ink",
+          "bg": "review-surface",
+          "min": 4.5,
+          "ratio": 5.724394192452815
+        },
+        {
+          "fg": "admin-ink",
+          "bg": "admin-surface",
+          "min": 4.5,
+          "ratio": 5.774914501506953
+        },
+        {
+          "fg": "destructive",
+          "bg": "background",
+          "min": 4.5,
+          "ratio": 7.375499898191526
+        },
+        {
+          "fg": "destructive-foreground",
+          "bg": "destructive",
+          "min": 4.5,
+          "ratio": 7.04589011770636
+        },
+        {
+          "fg": "input",
+          "bg": "label-background",
+          "min": 3,
+          "ratio": 9.135950744551739
+        },
+        {
+          "fg": "input",
+          "bg": "background",
+          "min": 3,
+          "ratio": 9.21052631578947
+        },
+        {
+          "fg": "accessibility-focus",
+          "bg": "background",
+          "min": 3,
+          "ratio": 7.816202921626805
+        },
+        {
+          "fg": "accessibility-focus",
+          "bg": "card",
+          "min": 3,
+          "ratio": 7.816202921626805
+        },
+        {
+          "fg": "stock-critical",
+          "bg": "card",
+          "min": 3,
+          "ratio": 7.375499898191526
+        },
+        {
+          "fg": "stock-low",
+          "bg": "card",
+          "min": 3,
+          "ratio": 4.499550492455284
+        },
+        {
+          "fg": "stock-normal",
+          "bg": "card",
+          "min": 3,
+          "ratio": 7.32895894466509
+        }
+      ],
+      "stock": [
+        "#a51f35",
+        "#a96800",
+        "#28613c"
+      ],
+      "simulated": [
+        "#a51f35",
+        "#a96800",
+        "#28613c"
+      ],
+      "distances": [
+        0.16443780346989606,
+        0.2377678088102241,
+        0.19679113581154437
+      ]
+    },
+    {
+      "mode": "protanopia",
+      "highContrast": false,
+      "checks": [
+        {
+          "fg": "foreground",
+          "bg": "background",
+          "min": 4.5,
+          "ratio": 13.701920706505078
+        },
+        {
+          "fg": "foreground",
+          "bg": "card",
+          "min": 4.5,
+          "ratio": 14.423049537655295
+        },
+        {
+          "fg": "card-foreground",
+          "bg": "card",
+          "min": 4.5,
+          "ratio": 20.171543375572078
+        },
+        {
+          "fg": "popover-foreground",
+          "bg": "popover",
+          "min": 4.5,
+          "ratio": 20.171543375572078
+        },
+        {
+          "fg": "muted-foreground",
+          "bg": "background",
+          "min": 4.5,
+          "ratio": 6.719513495743543
+        },
+        {
+          "fg": "muted-foreground",
+          "bg": "card",
+          "min": 4.5,
+          "ratio": 7.073159894440272
+        },
+        {
+          "fg": "muted-foreground",
+          "bg": "scene",
+          "min": 4.5,
+          "ratio": 6.257975573431309
+        },
+        {
+          "fg": "muted-foreground",
+          "bg": "review-surface",
+          "min": 4.5,
+          "ratio": 6.315158802927624
+        },
+        {
+          "fg": "muted-foreground",
+          "bg": "admin-surface",
+          "min": 4.5,
+          "ratio": 6.257975573431309
+        },
+        {
+          "fg": "primary",
+          "bg": "background",
+          "min": 4.5,
+          "ratio": 8.000754119922512
+        },
+        {
+          "fg": "primary",
+          "bg": "scene",
+          "min": 4.5,
+          "ratio": 7.451212633655806
+        },
+        {
+          "fg": "primary-foreground",
+          "bg": "primary",
+          "min": 4.5,
+          "ratio": 8.421831908241696
+        },
+        {
+          "fg": "warm-accent",
+          "bg": "background",
+          "min": 4.5,
+          "ratio": 6.508327599724778
+        },
+        {
+          "fg": "review-ink",
+          "bg": "review-surface",
+          "min": 4.5,
+          "ratio": 6.116681268632638
+        },
+        {
+          "fg": "admin-ink",
+          "bg": "admin-surface",
+          "min": 4.5,
+          "ratio": 7.451212633655806
+        },
+        {
+          "fg": "destructive",
+          "bg": "background",
+          "min": 4.5,
+          "ratio": 14.475705776377625
+        },
+        {
+          "fg": "destructive-foreground",
+          "bg": "destructive",
+          "min": 4.5,
+          "ratio": 14.556594938519975
+        },
+        {
+          "fg": "input",
+          "bg": "label-background",
+          "min": 3,
+          "ratio": 4.785386648117441
+        },
+        {
+          "fg": "input",
+          "bg": "background",
+          "min": 3,
+          "ratio": 4.58323458627067
+        },
+        {
+          "fg": "accessibility-focus",
+          "bg": "background",
+          "min": 3,
+          "ratio": 8.000754119922512
+        },
+        {
+          "fg": "accessibility-focus",
+          "bg": "card",
+          "min": 3,
+          "ratio": 8.421831908241696
+        },
+        {
+          "fg": "stock-critical",
+          "bg": "card",
+          "min": 3,
+          "ratio": 15.237558731900695
+        },
+        {
+          "fg": "stock-low",
+          "bg": "card",
+          "min": 3,
+          "ratio": 4.499550492455284
+        },
+        {
+          "fg": "stock-normal",
+          "bg": "card",
+          "min": 3,
+          "ratio": 5.856018422775369
+        }
+      ],
+      "stock": [
+        "#25252b",
+        "#a96800",
+        "#0069a8"
+      ],
+      "simulated": [
+        "#24262b",
+        "#7d6d00",
+        "#4a6cab"
+      ],
+      "distances": [
+        0.2938512629795521,
+        0.2838112632221901,
+        0.21484989017201758
+      ]
+    },
+    {
+      "mode": "protanopia",
+      "highContrast": true,
+      "checks": [
+        {
+          "fg": "foreground",
+          "bg": "background",
+          "min": 4.5,
+          "ratio": 19.672131147540984
+        },
+        {
+          "fg": "foreground",
+          "bg": "card",
+          "min": 4.5,
+          "ratio": 19.672131147540984
+        },
+        {
+          "fg": "card-foreground",
+          "bg": "card",
+          "min": 4.5,
+          "ratio": 19.672131147540984
+        },
+        {
+          "fg": "popover-foreground",
+          "bg": "popover",
+          "min": 4.5,
+          "ratio": 19.672131147540984
+        },
+        {
+          "fg": "muted-foreground",
+          "bg": "background",
+          "min": 4.5,
+          "ratio": 13.636363636363637
+        },
+        {
+          "fg": "muted-foreground",
+          "bg": "card",
+          "min": 4.5,
+          "ratio": 13.636363636363637
+        },
+        {
+          "fg": "muted-foreground",
+          "bg": "scene",
+          "min": 4.5,
+          "ratio": 12.064767631489204
+        },
+        {
+          "fg": "muted-foreground",
+          "bg": "review-surface",
+          "min": 4.5,
+          "ratio": 12.175011330620947
+        },
+        {
+          "fg": "muted-foreground",
+          "bg": "admin-surface",
+          "min": 4.5,
+          "ratio": 12.064767631489204
+        },
+        {
+          "fg": "primary",
+          "bg": "background",
+          "min": 4.5,
+          "ratio": 8.421831908241696
+        },
+        {
+          "fg": "primary",
+          "bg": "scene",
+          "min": 4.5,
+          "ratio": 7.451212633655806
+        },
+        {
+          "fg": "primary-foreground",
+          "bg": "primary",
+          "min": 4.5,
+          "ratio": 8.421831908241696
+        },
+        {
+          "fg": "warm-accent",
+          "bg": "background",
+          "min": 4.5,
+          "ratio": 6.850859334892682
+        },
+        {
+          "fg": "review-ink",
+          "bg": "review-surface",
+          "min": 4.5,
+          "ratio": 6.116681268632638
+        },
+        {
+          "fg": "admin-ink",
+          "bg": "admin-surface",
+          "min": 4.5,
+          "ratio": 7.451212633655806
+        },
+        {
+          "fg": "destructive",
+          "bg": "background",
+          "min": 4.5,
+          "ratio": 15.237558731900695
+        },
+        {
+          "fg": "destructive-foreground",
+          "bg": "destructive",
+          "min": 4.5,
+          "ratio": 14.556594938519975
+        },
+        {
+          "fg": "input",
+          "bg": "label-background",
+          "min": 3,
+          "ratio": 9.135950744551739
+        },
+        {
+          "fg": "input",
+          "bg": "background",
+          "min": 3,
+          "ratio": 9.21052631578947
+        },
+        {
+          "fg": "accessibility-focus",
+          "bg": "background",
+          "min": 3,
+          "ratio": 8.421831908241696
+        },
+        {
+          "fg": "accessibility-focus",
+          "bg": "card",
+          "min": 3,
+          "ratio": 8.421831908241696
+        },
+        {
+          "fg": "stock-critical",
+          "bg": "card",
+          "min": 3,
+          "ratio": 15.237558731900695
+        },
+        {
+          "fg": "stock-low",
+          "bg": "card",
+          "min": 3,
+          "ratio": 4.499550492455284
+        },
+        {
+          "fg": "stock-normal",
+          "bg": "card",
+          "min": 3,
+          "ratio": 5.856018422775369
+        }
+      ],
+      "stock": [
+        "#25252b",
+        "#a96800",
+        "#0069a8"
+      ],
+      "simulated": [
+        "#24262b",
+        "#7d6d00",
+        "#4a6cab"
+      ],
+      "distances": [
+        0.2938512629795521,
+        0.2838112632221901,
+        0.21484989017201758
+      ]
+    },
+    {
+      "mode": "deuteranopia",
+      "highContrast": false,
+      "checks": [
+        {
+          "fg": "foreground",
+          "bg": "background",
+          "min": 4.5,
+          "ratio": 13.701920706505078
+        },
+        {
+          "fg": "foreground",
+          "bg": "card",
+          "min": 4.5,
+          "ratio": 14.423049537655295
+        },
+        {
+          "fg": "card-foreground",
+          "bg": "card",
+          "min": 4.5,
+          "ratio": 20.171543375572078
+        },
+        {
+          "fg": "popover-foreground",
+          "bg": "popover",
+          "min": 4.5,
+          "ratio": 20.171543375572078
+        },
+        {
+          "fg": "muted-foreground",
+          "bg": "background",
+          "min": 4.5,
+          "ratio": 6.719513495743543
+        },
+        {
+          "fg": "muted-foreground",
+          "bg": "card",
+          "min": 4.5,
+          "ratio": 7.073159894440272
+        },
+        {
+          "fg": "muted-foreground",
+          "bg": "scene",
+          "min": 4.5,
+          "ratio": 6.257975573431309
+        },
+        {
+          "fg": "muted-foreground",
+          "bg": "review-surface",
+          "min": 4.5,
+          "ratio": 6.315158802927624
+        },
+        {
+          "fg": "muted-foreground",
+          "bg": "admin-surface",
+          "min": 4.5,
+          "ratio": 6.257975573431309
+        },
+        {
+          "fg": "primary",
+          "bg": "background",
+          "min": 4.5,
+          "ratio": 8.000754119922512
+        },
+        {
+          "fg": "primary",
+          "bg": "scene",
+          "min": 4.5,
+          "ratio": 7.451212633655806
+        },
+        {
+          "fg": "primary-foreground",
+          "bg": "primary",
+          "min": 4.5,
+          "ratio": 8.421831908241696
+        },
+        {
+          "fg": "warm-accent",
+          "bg": "background",
+          "min": 4.5,
+          "ratio": 6.508327599724778
+        },
+        {
+          "fg": "review-ink",
+          "bg": "review-surface",
+          "min": 4.5,
+          "ratio": 6.116681268632638
+        },
+        {
+          "fg": "admin-ink",
+          "bg": "admin-surface",
+          "min": 4.5,
+          "ratio": 7.451212633655806
+        },
+        {
+          "fg": "destructive",
+          "bg": "background",
+          "min": 4.5,
+          "ratio": 14.475705776377625
+        },
+        {
+          "fg": "destructive-foreground",
+          "bg": "destructive",
+          "min": 4.5,
+          "ratio": 14.556594938519975
+        },
+        {
+          "fg": "input",
+          "bg": "label-background",
+          "min": 3,
+          "ratio": 4.785386648117441
+        },
+        {
+          "fg": "input",
+          "bg": "background",
+          "min": 3,
+          "ratio": 4.58323458627067
+        },
+        {
+          "fg": "accessibility-focus",
+          "bg": "background",
+          "min": 3,
+          "ratio": 8.000754119922512
+        },
+        {
+          "fg": "accessibility-focus",
+          "bg": "card",
+          "min": 3,
+          "ratio": 8.421831908241696
+        },
+        {
+          "fg": "stock-critical",
+          "bg": "card",
+          "min": 3,
+          "ratio": 15.237558731900695
+        },
+        {
+          "fg": "stock-low",
+          "bg": "card",
+          "min": 3,
+          "ratio": 4.499550492455284
+        },
+        {
+          "fg": "stock-normal",
+          "bg": "card",
+          "min": 3,
+          "ratio": 5.856018422775369
+        }
+      ],
+      "stock": [
+        "#25252b",
+        "#a96800",
+        "#0069a8"
+      ],
+      "simulated": [
+        "#23252b",
+        "#8d7d04",
+        "#325fa7"
+      ],
+      "distances": [
+        0.34521697637548565,
+        0.25226186013617746,
+        0.2606139027713883
+      ]
+    },
+    {
+      "mode": "deuteranopia",
+      "highContrast": true,
+      "checks": [
+        {
+          "fg": "foreground",
+          "bg": "background",
+          "min": 4.5,
+          "ratio": 19.672131147540984
+        },
+        {
+          "fg": "foreground",
+          "bg": "card",
+          "min": 4.5,
+          "ratio": 19.672131147540984
+        },
+        {
+          "fg": "card-foreground",
+          "bg": "card",
+          "min": 4.5,
+          "ratio": 19.672131147540984
+        },
+        {
+          "fg": "popover-foreground",
+          "bg": "popover",
+          "min": 4.5,
+          "ratio": 19.672131147540984
+        },
+        {
+          "fg": "muted-foreground",
+          "bg": "background",
+          "min": 4.5,
+          "ratio": 13.636363636363637
+        },
+        {
+          "fg": "muted-foreground",
+          "bg": "card",
+          "min": 4.5,
+          "ratio": 13.636363636363637
+        },
+        {
+          "fg": "muted-foreground",
+          "bg": "scene",
+          "min": 4.5,
+          "ratio": 12.064767631489204
+        },
+        {
+          "fg": "muted-foreground",
+          "bg": "review-surface",
+          "min": 4.5,
+          "ratio": 12.175011330620947
+        },
+        {
+          "fg": "muted-foreground",
+          "bg": "admin-surface",
+          "min": 4.5,
+          "ratio": 12.064767631489204
+        },
+        {
+          "fg": "primary",
+          "bg": "background",
+          "min": 4.5,
+          "ratio": 8.421831908241696
+        },
+        {
+          "fg": "primary",
+          "bg": "scene",
+          "min": 4.5,
+          "ratio": 7.451212633655806
+        },
+        {
+          "fg": "primary-foreground",
+          "bg": "primary",
+          "min": 4.5,
+          "ratio": 8.421831908241696
+        },
+        {
+          "fg": "warm-accent",
+          "bg": "background",
+          "min": 4.5,
+          "ratio": 6.850859334892682
+        },
+        {
+          "fg": "review-ink",
+          "bg": "review-surface",
+          "min": 4.5,
+          "ratio": 6.116681268632638
+        },
+        {
+          "fg": "admin-ink",
+          "bg": "admin-surface",
+          "min": 4.5,
+          "ratio": 7.451212633655806
+        },
+        {
+          "fg": "destructive",
+          "bg": "background",
+          "min": 4.5,
+          "ratio": 15.237558731900695
+        },
+        {
+          "fg": "destructive-foreground",
+          "bg": "destructive",
+          "min": 4.5,
+          "ratio": 14.556594938519975
+        },
+        {
+          "fg": "input",
+          "bg": "label-background",
+          "min": 3,
+          "ratio": 9.135950744551739
+        },
+        {
+          "fg": "input",
+          "bg": "background",
+          "min": 3,
+          "ratio": 9.21052631578947
+        },
+        {
+          "fg": "accessibility-focus",
+          "bg": "background",
+          "min": 3,
+          "ratio": 8.421831908241696
+        },
+        {
+          "fg": "accessibility-focus",
+          "bg": "card",
+          "min": 3,
+          "ratio": 8.421831908241696
+        },
+        {
+          "fg": "stock-critical",
+          "bg": "card",
+          "min": 3,
+          "ratio": 15.237558731900695
+        },
+        {
+          "fg": "stock-low",
+          "bg": "card",
+          "min": 3,
+          "ratio": 4.499550492455284
+        },
+        {
+          "fg": "stock-normal",
+          "bg": "card",
+          "min": 3,
+          "ratio": 5.856018422775369
+        }
+      ],
+      "stock": [
+        "#25252b",
+        "#a96800",
+        "#0069a8"
+      ],
+      "simulated": [
+        "#23252b",
+        "#8d7d04",
+        "#325fa7"
+      ],
+      "distances": [
+        0.34521697637548565,
+        0.25226186013617746,
+        0.2606139027713883
+      ]
+    },
+    {
+      "mode": "tritanopia",
+      "highContrast": false,
+      "checks": [
+        {
+          "fg": "foreground",
+          "bg": "background",
+          "min": 4.5,
+          "ratio": 13.701920706505078
+        },
+        {
+          "fg": "foreground",
+          "bg": "card",
+          "min": 4.5,
+          "ratio": 14.423049537655295
+        },
+        {
+          "fg": "card-foreground",
+          "bg": "card",
+          "min": 4.5,
+          "ratio": 20.171543375572078
+        },
+        {
+          "fg": "popover-foreground",
+          "bg": "popover",
+          "min": 4.5,
+          "ratio": 20.171543375572078
+        },
+        {
+          "fg": "muted-foreground",
+          "bg": "background",
+          "min": 4.5,
+          "ratio": 6.719513495743543
+        },
+        {
+          "fg": "muted-foreground",
+          "bg": "card",
+          "min": 4.5,
+          "ratio": 7.073159894440272
+        },
+        {
+          "fg": "muted-foreground",
+          "bg": "scene",
+          "min": 4.5,
+          "ratio": 6.256390031768571
+        },
+        {
+          "fg": "muted-foreground",
+          "bg": "review-surface",
+          "min": 4.5,
+          "ratio": 6.273521401563344
+        },
+        {
+          "fg": "muted-foreground",
+          "bg": "admin-surface",
+          "min": 4.5,
+          "ratio": 6.256390031768571
+        },
+        {
+          "fg": "primary",
+          "bg": "background",
+          "min": 4.5,
+          "ratio": 7.055242112849106
+        },
+        {
+          "fg": "primary",
+          "bg": "scene",
+          "min": 4.5,
+          "ratio": 6.568979503427376
+        },
+        {
+          "fg": "primary-foreground",
+          "bg": "primary",
+          "min": 4.5,
+          "ratio": 7.426557828893589
+        },
+        {
+          "fg": "warm-accent",
+          "bg": "background",
+          "min": 4.5,
+          "ratio": 9.20585053965309
+        },
+        {
+          "fg": "review-ink",
+          "bg": "review-surface",
+          "min": 4.5,
+          "ratio": 8.594833601672303
+        },
+        {
+          "fg": "admin-ink",
+          "bg": "admin-surface",
+          "min": 4.5,
+          "ratio": 6.568979503427376
+        },
+        {
+          "fg": "destructive",
+          "bg": "background",
+          "min": 4.5,
+          "ratio": 9.20585053965309
+        },
+        {
+          "fg": "destructive-foreground",
+          "bg": "destructive",
+          "min": 4.5,
+          "ratio": 9.257292144536729
+        },
+        {
+          "fg": "input",
+          "bg": "label-background",
+          "min": 3,
+          "ratio": 4.785386648117441
+        },
+        {
+          "fg": "input",
+          "bg": "background",
+          "min": 3,
+          "ratio": 4.58323458627067
+        },
+        {
+          "fg": "accessibility-focus",
+          "bg": "background",
+          "min": 3,
+          "ratio": 7.055242112849106
+        },
+        {
+          "fg": "accessibility-focus",
+          "bg": "card",
+          "min": 3,
+          "ratio": 7.426557828893589
+        },
+        {
+          "fg": "stock-critical",
+          "bg": "card",
+          "min": 3,
+          "ratio": 9.690352266206792
+        },
+        {
+          "fg": "stock-low",
+          "bg": "card",
+          "min": 3,
+          "ratio": 4.81056129739922
+        },
+        {
+          "fg": "stock-normal",
+          "bg": "card",
+          "min": 3,
+          "ratio": 6.560845771108603
+        }
+      ],
+      "stock": [
+        "#841445",
+        "#727272",
+        "#006963"
+      ],
+      "simulated": [
+        "#90002b",
+        "#727272",
+        "#006c67"
+      ],
+      "distances": [
+        0.21538708874700463,
+        0.2566300395378739,
+        0.11051147806397511
+      ]
+    },
+    {
+      "mode": "tritanopia",
+      "highContrast": true,
+      "checks": [
+        {
+          "fg": "foreground",
+          "bg": "background",
+          "min": 4.5,
+          "ratio": 19.672131147540984
+        },
+        {
+          "fg": "foreground",
+          "bg": "card",
+          "min": 4.5,
+          "ratio": 19.672131147540984
+        },
+        {
+          "fg": "card-foreground",
+          "bg": "card",
+          "min": 4.5,
+          "ratio": 19.672131147540984
+        },
+        {
+          "fg": "popover-foreground",
+          "bg": "popover",
+          "min": 4.5,
+          "ratio": 19.672131147540984
+        },
+        {
+          "fg": "muted-foreground",
+          "bg": "background",
+          "min": 4.5,
+          "ratio": 13.636363636363637
+        },
+        {
+          "fg": "muted-foreground",
+          "bg": "card",
+          "min": 4.5,
+          "ratio": 13.636363636363637
+        },
+        {
+          "fg": "muted-foreground",
+          "bg": "scene",
+          "min": 4.5,
+          "ratio": 12.061710861531168
+        },
+        {
+          "fg": "muted-foreground",
+          "bg": "review-surface",
+          "min": 4.5,
+          "ratio": 12.09473847459194
+        },
+        {
+          "fg": "muted-foreground",
+          "bg": "admin-surface",
+          "min": 4.5,
+          "ratio": 12.061710861531168
+        },
+        {
+          "fg": "primary",
+          "bg": "background",
+          "min": 4.5,
+          "ratio": 7.426557828893589
+        },
+        {
+          "fg": "primary",
+          "bg": "scene",
+          "min": 4.5,
+          "ratio": 6.568979503427376
+        },
+        {
+          "fg": "primary-foreground",
+          "bg": "primary",
+          "min": 4.5,
+          "ratio": 7.426557828893589
+        },
+        {
+          "fg": "warm-accent",
+          "bg": "background",
+          "min": 4.5,
+          "ratio": 9.690352266206792
+        },
+        {
+          "fg": "review-ink",
+          "bg": "review-surface",
+          "min": 4.5,
+          "ratio": 8.594833601672303
+        },
+        {
+          "fg": "admin-ink",
+          "bg": "admin-surface",
+          "min": 4.5,
+          "ratio": 6.568979503427376
+        },
+        {
+          "fg": "destructive",
+          "bg": "background",
+          "min": 4.5,
+          "ratio": 9.690352266206792
+        },
+        {
+          "fg": "destructive-foreground",
+          "bg": "destructive",
+          "min": 4.5,
+          "ratio": 9.257292144536729
+        },
+        {
+          "fg": "input",
+          "bg": "label-background",
+          "min": 3,
+          "ratio": 9.135950744551739
+        },
+        {
+          "fg": "input",
+          "bg": "background",
+          "min": 3,
+          "ratio": 9.21052631578947
+        },
+        {
+          "fg": "accessibility-focus",
+          "bg": "background",
+          "min": 3,
+          "ratio": 7.426557828893589
+        },
+        {
+          "fg": "accessibility-focus",
+          "bg": "card",
+          "min": 3,
+          "ratio": 7.426557828893589
+        },
+        {
+          "fg": "stock-critical",
+          "bg": "card",
+          "min": 3,
+          "ratio": 9.690352266206792
+        },
+        {
+          "fg": "stock-low",
+          "bg": "card",
+          "min": 3,
+          "ratio": 4.81056129739922
+        },
+        {
+          "fg": "stock-normal",
+          "bg": "card",
+          "min": 3,
+          "ratio": 6.560845771108603
+        }
+      ],
+      "stock": [
+        "#841445",
+        "#727272",
+        "#006963"
+      ],
+      "simulated": [
+        "#90002b",
+        "#727272",
+        "#006c67"
+      ],
+      "distances": [
+        0.21538708874700463,
+        0.2566300395378739,
+        0.11051147806397511
+      ]
+    }
+  ]
+}

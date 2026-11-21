@@ -19,9 +19,10 @@ export function AccessibilitySettingsButton() {
         <div className="accessibility-color-setting">
           <label htmlFor={`${id}-colors`}><Palette aria-hidden="true" /> Adaptación para daltonismo</label>
           <Select value={settings.colorMode} onValueChange={value => { const mode = colorModes.find(mode => mode.value === value); if (mode) update({ colorMode: mode.value }); }}>
-            <SelectTrigger id={`${id}-colors`}><SelectValue /></SelectTrigger>
+            <SelectTrigger id={`${id}-colors`} aria-describedby={`${id}-colors-help`}><SelectValue /></SelectTrigger>
             <SelectContent data-accessibility-settings>{colorModes.map(mode => <SelectItem key={mode.value} value={mode.value}>{mode.label}</SelectItem>)}</SelectContent>
           </Select>
+          <p id={`${id}-colors-help`} className="accessibility-note">Cambia la paleta de la interfaz. Elige la que mejor te permita distinguir los elementos; puedes combinarla con alto contraste. Los estados también se indican con texto e iconos.</p>
         </div>
         <div className="accessibility-setting"><label htmlFor={`${id}-contrast`}><Contrast aria-hidden="true" /> Alto contraste</label><Switch id={`${id}-contrast`} checked={settings.highContrast} onCheckedChange={highContrast => update({ highContrast })} /></div>
         <div className="accessibility-setting"><label htmlFor={`${id}-read`}><Volume2 aria-hidden="true" /> Leer al tocar</label><Switch id={`${id}-read`} checked={settings.readOnTouch} disabled={!speechSupported} onCheckedChange={readOnTouch => update({ readOnTouch })} /></div>
