@@ -1,9 +1,9 @@
 export const accessibilityStorageKey = "gremlib-accessibility";
 export const colorModes = [
   { value: "none", label: "Sin adaptación" },
-  { value: "protanopia", label: "Protanopía · rojo" },
-  { value: "deuteranopia", label: "Deuteranopía · verde" },
-  { value: "tritanopia", label: "Tritanopía · azul" },
+  { value: "protanopia", label: "Protanopia" },
+  { value: "deuteranopia", label: "Deuteranopia" },
+  { value: "tritanopia", label: "Tritanopia" },
 ] as const;
 export type ColorMode = typeof colorModes[number]["value"];
 export type AccessibilitySettings = {

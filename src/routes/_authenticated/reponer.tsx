@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useStaffMode } from "@/components/staff-mode";
 import { confirmRestock, getCatalogBooks } from "@/lib/member.functions";
-import { stockLevel } from "@/lib/stock";
+import { StockStatus } from "@/components/stock-status";
 import { pageMeta } from "@/lib/page-meta";
 
 export const Route = createFileRoute("/_authenticated/reponer")({
@@ -69,10 +69,11 @@ function Inventory({ userId }: { userId: string }) {
   }
   return <><p className="welcome-eyebrow">ADMINISTRACIÓN</p><h1 className="member-title">Gestión de stock</h1>
     <p className="shop-note">Los libros con menos existencias aparecen primero. Selecciona los que quieras reponer.</p>
+    <p className="shop-note stock-legend">Crítico: 0–5 · Bajo: 6–10 · Normal: más de 10 unidades.</p>
     {catalog.isPending && <p role="status">Consultando existencias…</p>}
     {catalog.isError && <div role="alert">No se ha podido actualizar el catálogo. <Button variant="outline" onClick={() => void catalog.refetch()}>Reintentar</Button></div>}
     {catalog.isSuccess && !books.length && <p>No hay libros en el catálogo.</p>}
-    <ul className="stock-list">{books.map(book => <li key={book.id}><div><Link to="/libro/$bookId" params={{ bookId: book.id }}><strong>{book.title}</strong></Link><p>{book.author}</p><span className="stock-label" data-level={stockLevel(book.stock)}>{stockLevel(book.stock)} · {book.stock} uds.</span></div>
+    <ul className="stock-list">{books.map(book => <li key={book.id}><div><Link to="/libro/$bookId" params={{ bookId: book.id }}><strong>{book.title}</strong></Link><p>{book.author}</p><StockStatus stock={book.stock} /></div>
       <Button variant="outline" disabled={busy || (selected.length >= 100 && !(book.id in draft.lines))} aria-pressed={book.id in draft.lines} aria-label={`Seleccionar ${book.title} para reponer`} onClick={() => edit(book.id, book.id in draft.lines ? undefined : "1")}>{book.id in draft.lines ? "Seleccionado" : "Seleccionar"}</Button></li>)}</ul>
     <section className="shop-summary"><h2><PackagePlus aria-hidden="true" /> Cesta de reposición</h2>
       {!selected.length ? <p>Todavía no has seleccionado libros.</p> : <form onSubmit={e => { e.preventDefault(); void submit(); }}>
