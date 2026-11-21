@@ -1,5 +1,5 @@
 import { useId } from "react";
-import { Contrast, Palette, RotateCcw, Type, Volume2, VolumeX } from "lucide-react";
+import { Contrast, Moon, Palette, RotateCcw, Type, Volume2, VolumeX } from "lucide-react";
 import { useAccessibility } from "@/components/accessibility-provider";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
@@ -16,6 +16,7 @@ export function AccessibilitySettingsButton() {
     <DialogContent className="accessibility-panel" data-accessibility-settings>
       <DialogHeader><DialogTitle>Accesibilidad</DialogTitle><DialogDescription>Tu lectura, a tu medida.</DialogDescription></DialogHeader>
       <div className="accessibility-options">
+        <div className="accessibility-setting"><label htmlFor={`${id}-dark`}><Moon aria-hidden="true" /> Modo oscuro</label><Switch id={`${id}-dark`} checked={settings.darkMode} onCheckedChange={darkMode => update({ darkMode })} /></div>
         <div className="accessibility-color-setting">
           <label htmlFor={`${id}-colors`}><Palette aria-hidden="true" /> Adaptación para daltonismo</label>
           <Select value={settings.colorMode} onValueChange={value => { const mode = colorModes.find(mode => mode.value === value); if (mode) update({ colorMode: mode.value }); }}>

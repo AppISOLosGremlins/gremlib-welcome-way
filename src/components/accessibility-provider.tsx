@@ -30,6 +30,7 @@ export function AccessibilityProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (!ready) return;
     const root = document.documentElement;
+    root.classList.toggle("dark", settings.darkMode);
     root.dataset["colorVision"] = settings.colorMode;
     root.dataset["highContrast"] = String(settings.highContrast);
     root.dataset["largeText"] = String(settings.largeText);

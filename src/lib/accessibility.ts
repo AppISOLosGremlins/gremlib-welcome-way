@@ -8,6 +8,7 @@ export const colorModes = [
 export type ColorMode = typeof colorModes[number]["value"];
 export type AccessibilitySettings = {
   colorMode: ColorMode;
+  darkMode: boolean;
   highContrast: boolean;
   largeText: boolean;
   readOnTouch: boolean;
@@ -15,13 +16,14 @@ export type AccessibilitySettings = {
   vibration: boolean;
 };
 export const defaultAccessibilitySettings: AccessibilitySettings = {
-  colorMode: "none", highContrast: false, largeText: false, readOnTouch: false, soundEffects: true, vibration: true,
+  colorMode: "none", darkMode: false, highContrast: false, largeText: false, readOnTouch: false, soundEffects: true, vibration: true,
 };
 export function parseAccessibilitySettings(value: unknown): AccessibilitySettings {
   if (!value || typeof value !== "object") return { ...defaultAccessibilitySettings };
   const data = value as Record<string, unknown>;
   return {
     colorMode: colorModes.find(mode => mode.value === data["colorMode"])?.value ?? "none",
+    darkMode: data["darkMode"] === true,
     highContrast: data["highContrast"] === true,
     largeText: data["largeText"] === true,
     readOnTouch: data["readOnTouch"] === true,
@@ -39,3 +41,5 @@ export function readableTouchText(target: EventTarget | null): string {
   const text = element.getAttribute("aria-label") || (element instanceof HTMLImageElement ? element.alt : element.textContent);
   return (text ?? "").replace(/\s+/g, " ").trim().slice(0, 1800);
 }
+// Runs before the first paint; storage failures keep the default light appearance.
+export const appearanceBootstrap = `try { document.documentElement.classList.toggle('dark', JSON.parse(localStorage.getItem('gremlib-accessibility') || 'null')?.darkMode === true); } catch {}`;

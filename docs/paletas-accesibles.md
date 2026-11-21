@@ -33,7 +33,7 @@ En todos los modos:
 
 Los botones, enlaces, estrellas de reseñas, opciones de inicio, mensajes y menú usan las variables globales. Los estados de stock tienen variables propias, independientes del acento decorativo y del color de error. El menú activo incorpora una línea inferior y mayor peso tipográfico. Los campos y textos secundarios ganan contraste. El selector explica que se cambia la paleta de la interfaz y que puede combinarse con alto contraste.
 
-Las portadas y la mascota conservan sus colores originales: no se aplica un filtro a fotografías o ilustraciones. El género y la identidad de los libros se expresan también con texto. Esta revisión no constituye una auditoría de todos los píxeles de imágenes o degradados, ni del tema oscuro de los componentes base, que no se ofrece como ajuste de la aplicación.
+Las portadas y la mascota conservan sus colores originales: no se aplica un filtro a fotografías o ilustraciones. El género y la identidad de los libros se expresan también con texto. Esta revisión no constituye una auditoría de todos los píxeles de imágenes o degradados, ni de todos los estados interactivos. La rama de modo oscuro amplía esta auditoría a las superficies oscuras y sus combinaciones.
 
 ## Comprobación reproducible
 
@@ -44,7 +44,7 @@ npx tsc --noEmit
 npm run build
 ```
 
-El primer comando lee los tokens de `src/styles.css`, resuelve los modos y alto contraste, calcula luminancia relativa y regenera `palette-audit.json` y `paletas-stock.svg`. Verifica 24 pares en cuatro modos y dos configuraciones de contraste: **192 comprobaciones**. No inspecciona todas las combinaciones posibles de estados hover, transparencia o imágenes.
+El primer comando lee los tokens de `src/styles.css`, resuelve los modos y alto contraste, calcula luminancia relativa y regenera `palette-audit.json` y `paletas-stock.svg`. Verifica 24 pares en cuatro modos, dos apariencias (clara/oscura) y dos configuraciones de contraste: **384 comprobaciones**. No inspecciona todas las combinaciones posibles de estados hover, transparencia o imágenes.
 
 | Modo | Contraste del indicador crítico/blanco | Bajo/blanco | Normal/blanco |
 | --- | ---: | ---: | ---: |
@@ -53,7 +53,7 @@ El primer comando lee los tokens de `src/styles.css`, resuelve los modos y alto 
 | Deuteranopia | 15,24:1 | 4,50:1 | 5,86:1 |
 | Tritanopia | 9,69:1 | 4,81:1 | 6,56:1 |
 
-Son indicadores gráficos, cuyo umbral utilizado es 3:1; el texto de las etiquetas conserva el color de texto principal. La evaluación usa valores sin redondear, aunque la tabla los muestra con dos decimales.
+La tabla anterior corresponde a la apariencia clara; los resultados completos de ambas apariencias están en el JSON. Son indicadores gráficos, cuyo umbral utilizado es 3:1; el texto de las etiquetas conserva el color de texto principal. La evaluación usa valores sin redondear, aunque la tabla los muestra con dos decimales.
 
 La simulación usa las matrices publicadas de Machado, Oliveira y Fernandes (2009), severidad 1, sobre RGB **lineal**, seguida de recorte al gamut sRGB y codificación de salida [5, 6]. Se calcula distancia euclídea OKLab entre muestras simuladas para detectar regresiones. Se usa 0,08 como umbral interno de alarma: **no es un umbral de WCAG ni una garantía clínica de diferenciación**.
 
@@ -74,7 +74,7 @@ La lámina [paletas-stock.svg](paletas-stock.svg) contiene muestras calculadas, 
 
 ### Resultados y límites
 
-- Pasan las 192 comprobaciones de tokens y las comprobaciones internas de separación de las muestras simuladas.
+- Pasan las 384 comprobaciones de tokens y las comprobaciones internas de separación de las muestras simuladas.
 - Pasan la compilación, TypeScript y las pruebas automatizadas, incluidas las etiquetas y formas de stock en los límites 0, 5, 6, 10 y 11.
 - No se ha podido completar la comprobación visual en navegador en este entorno: Chromium no pudo iniciarse por una restricción de sockets. No se atribuyen resultados de navegación ni capturas reales a esta revisión.
 - Queda la revisión visual en móvil y la evaluación con personas con estas características visuales. No se declara conformidad WCAG completa ni que el ajuste «corrija» la visión.
