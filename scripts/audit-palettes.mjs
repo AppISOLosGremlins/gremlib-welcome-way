@@ -20,11 +20,11 @@ function linear(value) {
   const s=(L-.0894841775*a-1.291485548*b)**3;
   return [4.0767416621*l-3.3077115913*m+.2309699292*s,-1.2684380046*l+2.6097574011*m-.3413193965*s,-.0041960863*l-.7034186147*m+1.707614701*s].map(clamp);
 }
-function palette(mode, highContrast, source=css) {
+function palette(mode, highContrast, source=css, dark=false) {
   const vars = {};
   for (const [, selector, body] of source.replace(/\/\*[\s\S]*?\*\//g, '').matchAll(/([^{}]+)\{([^{}]*)\}/g)) {
     const selectors=selector.trim().split(',').map(s=>s.trim());
-    if (!selectors.includes(':root') && !selectors.includes(`html[data-color-vision="${mode}"]`) && !(highContrast && selectors.includes('html[data-high-contrast="true"]'))) continue;
+    if (!(dark && (selectors.includes('.dark') || selectors.includes('html.dark') || selectors.includes(`html.dark[data-color-vision="${mode}"]`) || (highContrast && selectors.includes('html.dark[data-high-contrast="true"]')))) && !selectors.includes(':root') && !selectors.includes(`html[data-color-vision="${mode}"]`) && !(highContrast && selectors.includes('html[data-high-contrast="true"]'))) continue;
     for (const [,name,value] of body.matchAll(/--([\w-]+):\s*([^;]+);/g)) vars[name]=value;
   }
   function get(name) {
@@ -53,23 +53,23 @@ const pairs = [
  ...['critical','low','normal'].map(s=>['stock-'+s,'card',3]),
 ];
 const results=[];
-for(const mode of modes) for(const highContrast of [false,true]) {
- const get=palette(mode, highContrast);
+for(const dark of [false,true]) for(const mode of modes) for(const highContrast of [false,true]) {
+ const get=palette(mode, highContrast, css, dark);
  const checks=pairs.map(([fg,bg,min])=>({fg,bg,min,ratio:contrast(get(fg),get(bg))}));
  const failed=checks.filter(c=>c.ratio<c.min);
  const stock=['critical','low','normal'].map(s=>get('stock-'+s));
  const perceived=stock.map(c=>simulate(c,mode));
  const distances=[[0,1],[0,2],[1,2]].map(([a,b])=>distance(perceived[a],perceived[b]));
- results.push({mode,highContrast,checks,stock:stock.map(hex),simulated:perceived.map(hex),distances});
- assert.equal(failed.length,0,JSON.stringify({mode,highContrast,failed},null,2));
+ results.push({mode,highContrast,dark,checks,stock:stock.map(hex),simulated:perceived.map(hex),distances});
+ assert.equal(failed.length,0,JSON.stringify({mode,highContrast,dark,failed},null,2));
  // Project regression guard, NOT a WCAG/perceptual certification threshold.
  if(mode!=='none') assert.ok(Math.min(...distances)>.08,`Similar simulated stock colors in ${mode}`);
- console.log(`${mode}${highContrast?' + high contrast':''}: ${checks.length} contrast checks passed; simulated stock distances ${distances.map(x=>x.toFixed(3)).join(', ')}`);
+ console.log(`${dark?'dark ':'light '}${mode}${highContrast?' + high contrast':''}: ${checks.length} contrast checks passed; simulated stock distances ${distances.map(x=>x.toFixed(3)).join(', ')}`);
 }
 writeFileSync(new URL('../docs/palette-audit.json',import.meta.url),JSON.stringify({method:'WCAG relative luminance; Machado 2009 severity 1 in linear sRGB; OKLab distance is only a regression heuristic',results},null,2)+'\n');
 // Reproducible swatches, not generated imagery or screenshots of actual screens.
 let svg='<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="650" viewBox="0 0 1000 650"><rect width="1000" height="650" fill="#faf8f0"/><g font-family="sans-serif" fill="#202a23"><text x="30" y="38" font-size="24" font-weight="700">Gremlib · Paletas de stock</text><text x="30" y="65" font-size="14">Arriba: colores de interfaz. Abajo: simulación Machado (2009), severidad 1.</text>';
-for(const [i,r] of results.filter(r=>!r.highContrast).entries()) {
+for(const [i,r] of results.filter(r=>!r.highContrast && !r.dark).entries()) {
  const x=30+(i%2)*490,y=100+Math.floor(i/2)*240;
  svg+=`<text x="${x}" y="${y}" font-size="20" font-weight="700">${r.mode==='none'?'Sin adaptación':r.mode}</text>`;
  for(const [j,label] of ['Crítico · 0–5','Bajo · 6–10','Normal · 11+'].entries()) {

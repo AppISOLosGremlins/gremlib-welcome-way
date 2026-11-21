@@ -6,7 +6,6 @@ import { createFileRoute, Link, Navigate } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
 import { ArrowRight, Mail, ShieldCheck } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
-import { lovable } from "@/integrations/lovable";
 import { useAuth } from "@/components/auth-provider";
 import { AuthLayout } from "@/components/auth-layout";
 import { PasswordField } from "@/components/password-field";
@@ -55,10 +54,6 @@ function AuthForm({ mode }: { mode: "login" | "signup" | "forgot" }) {
       }
     } catch (e) { playSound("error"); setError(authErrorMessage(e instanceof Error ? e : new Error("Unknown"))); } finally { setBusy(false); }
   }
-  async function google() {
-    setBusy(true); setError("");
-    try { const result = await lovable.auth.signInWithOAuth("google", { redirect_uri: `${window.location.origin}/auth` }); if (result.error) throw result.error; } catch { setError("No se ha podido iniciar sesión con Google. Inténtalo de nuevo."); } finally { setBusy(false); }
-  }
   return <div className="auth-body">
     <p className="welcome-eyebrow">{mode === "forgot" ? "VOLVAMOS A TU HISTORIA" : "TU PRÓXIMO CAPÍTULO EMPIEZA AQUÍ"}</p>
     <h1>{mode === "signup" ? "Crea tu refugio." : mode === "forgot" ? "¿Olvidaste tu contraseña?" : "Qué bueno verte."}</h1>
@@ -71,6 +66,6 @@ function AuthForm({ mode }: { mode: "login" | "signup" | "forgot" }) {
       {error && <p className="auth-message is-error" role="alert">{error}</p>}{message && <p className="auth-message" role="status"><Mail />{message}</p>}
       <Button type="submit" variant="welcome" disabled={busy}>{busy ? "Un momento…" : mode === "signup" ? "Crear mi cuenta" : mode === "forgot" ? "Enviar enlace" : "Entrar en GremLib"}<ArrowRight /></Button>
     </form>
-    {mode !== "forgot" ? <><div className="auth-divider"><span>o continúa con</span></div><Button variant="outline" className="google-button" disabled={busy} onClick={google}><span className="google-letter" aria-hidden="true">G</span> Google</Button><p className="auth-privacy"><ShieldCheck /> Tu perfil es solo tuyo.</p></> : <Button variant="quiet" className="auth-signout" asChild><Link to="/auth" search={{ mode: "login" }}>Volver a iniciar sesión</Link></Button>}
+    {mode !== "forgot" ? <><p className="auth-privacy"><ShieldCheck /> Tu perfil es solo tuyo.</p></> : <Button variant="quiet" className="auth-signout" asChild><Link to="/auth" search={{ mode: "login" }}>Volver a iniciar sesión</Link></Button>}
   </div>;
 }
