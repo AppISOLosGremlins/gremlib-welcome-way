@@ -13,11 +13,17 @@ Puedes probar la aplicación directamente en la nube sin necesidad de instalar n
 ### 🔑 Credenciales de Acceso para Evaluación
 Utiliza la siguiente cuenta de prueba preconfigurada para acceder a todas las secciones de la app:
 
+*CUENTA ADMINISTRADOR*
 | Campo | Credencial |
 | :--- | :--- |
 | **Correo electrónico:** | `lagireg344@iconcubic.com` |
 | **Contraseña:** | `lagireg344` |
 
+*CUENTA USUARIO*
+| Campo | Credencial |
+| :--- | :--- |
+| **Correo electrónico:** | `hesagrauttippe-4298@yopmail.com` |
+| **Contraseña:** | `hesagrauttippe` |
 ---
 
 ## 📱 Recomendación de Visualización (Modo Móvil)
