@@ -164,6 +164,7 @@
 
 .welcome-page { min-height: 100svh; display: flex; flex-direction: column; position: relative; overflow: hidden; }
 .welcome-header { display: flex; align-items: center; justify-content: space-between; gap: 24px; width: 100%; max-width: 1440px; margin: 0 auto; padding: 28px 52px; }
+.welcome-accessibility { display: flex; justify-content: flex-end; width: 100%; max-width: 1440px; margin: 0 auto; padding: 0 52px 12px; }
 .auth-header-actions { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
 .brand-mark { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 700; font-size: 1.6875rem; text-decoration: none; color: var(--foreground); }
 .brand-mark > svg { width: 27px; height: 27px; color: var(--primary); }
@@ -205,6 +206,7 @@
 @media (min-width: 768px) and (min-height: 1000px) { .welcome-content { margin: 52px auto auto; } }
 @media (max-width: 600px) {
   .welcome-header { padding: 23px 22px; gap: 10px; }
+  .welcome-accessibility { padding: 0 22px 12px; }
   .brand-mark { font-size: 1.4375rem; gap: 7px; }
   .brand-mark > svg { width: 23px; height: 23px; }
   .header-note { display: none; }

@@ -4,6 +4,7 @@ import { ArrowRight, BookOpen, Bookmark, Heart, Sparkles, Leaf } from "lucide-re
 import { Button } from "@/components/ui/button";
 import banner from "@/assets/gremlib-banner.asset.json";
 import { useAuth } from "@/components/auth-provider";
+import { AccessibilitySettingsButton } from "@/components/accessibility-settings";
 
 export const Route = createFileRoute("/")({
   head: () => ({ meta: [
@@ -36,6 +37,9 @@ function Index() {
         <span className="header-note"><Leaf /> Un lugar para perderse leyendo</span>
         {user ? <Button variant="quiet" asChild><Link to="/inicio">Inicio<ArrowRight /></Link></Button> : <Button variant="quiet" asChild><Link to="/auth" search={{ mode: "login" }}>{loading ? "Tu cuenta" : "Iniciar sesión"}<ArrowRight /></Link></Button>}
       </header>
+      <div className="welcome-accessibility">
+        <AccessibilitySettingsButton />
+      </div>
 
       <section className="welcome-content" aria-label="Introducción a GremLib">
         <div className="illustration-scene">
